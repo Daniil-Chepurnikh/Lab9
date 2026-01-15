@@ -42,7 +42,7 @@ namespace Task1
         /// <param name="max">Правая граница диапазона</param>
         /// <param name="number">Проверяемое число</param>
         /// <returns>true если принадлежит</returns>
-        static bool ValidateNumber(int min, int max, int number) => number >= min && number <= max;
+        static bool ValidateInt(int min, int max, int number) => number >= min && number <= max;
 
         /// <summary>
         /// Читает корректное целое число в необходимом диапазоне
@@ -51,7 +51,7 @@ namespace Task1
         /// <param name="max">Правая граница диапазона</param>
         /// <param name="message">Приглашение к вводу</param>
         /// <returns>Число</returns>
-        public static int InputAndValidateNumber(int min, int max, string message = "Введите целое число")
+        public static int InputAndValidateInt(int min, int max, string message)
         {
             var isValid = true;
             int number;
@@ -60,7 +60,7 @@ namespace Task1
                 OutputData.Message(message);
 
                 number = InputInt(message, NOT_INTEGER);
-                if(!ValidateNumber(number, min, max))
+                if(!ValidateInt(number, min, max))
                 {
                     OutputData.Error(OUT_OF_RANGE);
                     isValid = false;

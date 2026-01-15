@@ -83,9 +83,29 @@ namespace Task1
         /// </summary>
         public static void ShowCount() => OutputData.Message("Количество созданных покемонов: " + count);
 
-        //bool ValidateAttack()
+        static void IncreaseAttack(int increase)
+        {
+            
+        }
 
+        
+        static void IncreaseDefense(int increase)
+        {
 
+        }
+
+        
+        static void IncreaseStamina(int increase)
+        {
+
+        }
+
+        
+        static int ValidateIncrease(int current, int min, int max)
+        {
+            int increase = InputData.InputAndValidateInt(min, max, "Введите увеличение");
+            return (increase + current) <= max ? increase : 0;
+        }
 
     }
 }
