@@ -1,11 +1,16 @@
-﻿namespace Task1
+﻿// GoodPractice: ОТДЕЛЬНЫЙ КЛАСС - ОТДЕЛЬНЫЙ ФАЙЛ
+// GoodPractice: Не пиши лишних/очевидных вещей
+
+namespace Task1
 {
+    /// <summary>
+    /// Демонстрация работы программы
+    /// </summary>
     internal class Program
     {
         static void Main(string[] args)
         {
-            // TODO: получить задание и начать его делать
-            // GoodPractice: ОТДЕЛЬНЫЙ КЛАСС - ОТДЕЛЬНЫЙ ФАЙЛ
+
         }
     }
 }
