@@ -4,8 +4,12 @@ namespace Task1
 {
     internal static class InputData
     {
+        #region Сообщения об ошибках
+
         const string OUT_OF_RANGE = "Число не входит в разрешённый дипазон";
         const string NOT_INTEGER = "Введено не целое число";
+
+        #endregion
 
         /// <summary>
         /// Читает целое число
