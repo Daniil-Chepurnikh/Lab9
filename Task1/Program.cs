@@ -3,6 +3,8 @@
 // GoodPractice: ровный вывод в консоль $"{значение, желаемая ширина}"
 // GoodPractice: Ровные столбики в программном коде
 
+using System;
+
 namespace Task1
 {
     /// <summary>
@@ -12,32 +14,30 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Pokemon pokemon = new();
-            pokemon.Show();
+            Pokemon Vanya = new();
+            Vanya.Show();
 
-            Pokemon pokemon_1 = new(111, 111, 111);
-            pokemon_1.Show();
+            Pokemon Petya = new(111, 111, 111);
+            Petya.Show();
 
-            Pokemon pokemon_2 = new(pokemon_1);
-            pokemon_2.Show();
+            Pokemon Sidya = new(Petya);
+            Sidya.Show();
 
             Pokemon.ShowCount();
 
-            pokemon = Pokemon.IncreaseAttack(pokemon, 100);
-            pokemon.Show();
+            Pokemon.IncreaseAttack(Vanya, 100);
+            Vanya.Show();
 
-            pokemon_1 = Pokemon.IncreaseDefense(pokemon_1, 100);
-            pokemon_1.Show();
+            Pokemon.IncreaseDefense(Petya, 100);
+            Petya.Show();
 
-            pokemon_2 = Pokemon.IncreaseStamina(pokemon_2, 100);
-            pokemon_2.Show();
+            Pokemon.IncreaseStamina(Sidya, 100);
+            Sidya.Show();
 
-            pokemon = Pokemon.IncreaseAttack(pokemon, 100);
-            pokemon = Pokemon.IncreaseDefense(pokemon, 100);
-            pokemon = Pokemon.IncreaseStamina(pokemon, 100);
-            pokemon_2.Show();
-
-
+            Vanya.IncreaseAttack(111);  // Ваня, возьми меч поострее
+            Vanya.IncreaseDefense(111); // Ваня, надень кольчугу покрепче
+            Vanya.IncreaseStamina(111); // Ваня, возьми землицы русской
+            Vanya.Show();               // Ваня, покажи этим супостатам
 
         }
     }
