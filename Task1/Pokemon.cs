@@ -83,6 +83,8 @@ namespace Task1
         /// </summary>
         public static void ShowCount() => OutputData.Message($"Количество созданных покемонов:  {count}\n");
 
+        #region Изменение характеристик 
+
         /// <summary>
         /// Увеличивает атаку покемона, если возможно
         /// </summary>
@@ -139,5 +141,6 @@ namespace Task1
         /// <returns></returns>
         static bool ValidateIncrease(int current, int increase, int max) =>  current + increase <= max;
 
+        #endregion
     }
 }

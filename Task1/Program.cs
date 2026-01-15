@@ -31,6 +31,14 @@ namespace Task1
 
             pokemon_2 = Pokemon.IncreaseStamina(pokemon_2, 100);
             pokemon_2.Show();
+
+            pokemon = Pokemon.IncreaseAttack(pokemon, 100);
+            pokemon = Pokemon.IncreaseDefense(pokemon, 100);
+            pokemon = Pokemon.IncreaseStamina(pokemon, 100);
+            pokemon_2.Show();
+
+
+
         }
     }
 }
