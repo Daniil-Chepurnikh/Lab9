@@ -10,7 +10,13 @@ namespace Task1
     {
         static void Main(string[] args)
         {
+            Pokemon pokemon   = new();
+            //Pokemon pokemon_1 = new(111, 111, 111);
+            //Pokemon pokemon_2 = new(pokemon_1);
 
+            pokemon.Show();
+            //pokemon_1.Show();
+            //pokemon_2.Show();
         }
     }
 }
