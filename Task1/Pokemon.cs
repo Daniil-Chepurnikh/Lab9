@@ -71,7 +71,7 @@ namespace Task1
         /// Печатает все характеристики покемона
         /// </summary>
         /// <param name="p">Конкретный покемон</param>
-        public void Show() => Console.WriteLine($"Атака: {attack,3}, защита: {defense,3}, выносливость: {stamina,3}");
+        public void Show() => OutputData.Message($"Атака: {attack,3}, защита: {defense,3}, выносливость: {stamina,3}");
 
         /// <summary>
         /// Увеличивает счётчик созданных экземпляров
@@ -81,7 +81,11 @@ namespace Task1
         /// <summary>
         /// Показывает количество созданных экземпляров
         /// </summary>
-        public static void ShowCount() => Console.WriteLine("Количество созданных покемонов: " + count);
+        public static void ShowCount() => OutputData.Message("Количество созданных покемонов: " + count);
+
+        //bool ValidateAttack()
+
+
 
     }
 }
