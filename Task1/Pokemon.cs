@@ -6,16 +6,18 @@ namespace Task1
     {
         #region Диапазон значений
 
-        const short MAX_ATK = 414;
         const short MIN_ATK = 17;
+        const short MAX_ATK = 414;
 
-        const short MAX_DEF = 396;
         const short MIN_DEF = 32;
+        const short MAX_DEF = 396;
 
-        const short MAX_STAM = 1;
-        const short MIN_STAM = 496;
+        const short MIN_STAM = 1;
+        const short MAX_STAM = 496;
 
         #endregion
+
+        static uint count = 0;
 
         int attack;
         int defense;
@@ -28,9 +30,11 @@ namespace Task1
         /// </summary>
         public Pokemon()
         {
-            attack = MIN_ATK;
+            attack  = MIN_ATK;
             defense = MIN_DEF;
             stamina = MIN_STAM;
+
+            IncCount();
         }
 
         /// <summary>
@@ -44,6 +48,8 @@ namespace Task1
             attack = atk;
             defense = def;
             stamina = stam;
+
+            IncCount();
         }
 
         /// <summary>
@@ -55,6 +61,8 @@ namespace Task1
             attack = p.attack;
             defense = p.defense;
             stamina = p.stamina;
+
+            IncCount();
         }
 
         #endregion
@@ -63,11 +71,17 @@ namespace Task1
         /// Печатает все характеристики покемона
         /// </summary>
         /// <param name="p">Конкретный покемон</param>
-        public void Show()
-        {
-            Console.WriteLine($"Атака: {attack,3}, защита: {defense,3}, выносливость: {stamina,3}"); // вывод ровными столбцами - {значение, желаемая ширина}
-        }
-        
+        public void Show() => Console.WriteLine($"Атака: {attack,3}, защита: {defense,3}, выносливость: {stamina,3}");
+
+        /// <summary>
+        /// Увеличивает счётчик созданных экземпляров
+        /// </summary>
+        void IncCount() => count++;
+
+        /// <summary>
+        /// Показывает количество созданных экземпляров
+        /// </summary>
+        public static void ShowCount() => Console.WriteLine("Количество созданных покемонов: " + count);
 
     }
 }
