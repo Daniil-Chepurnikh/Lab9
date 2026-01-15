@@ -56,11 +56,11 @@ namespace Task1
         /// Копирование
         /// </summary>
         /// <param name="p">Копируемый экземпляр</param>
-        public Pokemon(Pokemon p)
+        public Pokemon(Pokemon pokemon)
         {
-            attack = p.attack;
-            defense = p.defense;
-            stamina = p.stamina;
+            attack = pokemon.attack;
+            defense = pokemon.defense;
+            stamina = pokemon.stamina;
 
             IncCount();
         }
@@ -71,7 +71,7 @@ namespace Task1
         /// Печатает все характеристики покемона
         /// </summary>
         /// <param name="p">Конкретный покемон</param>
-        public void Show() => OutputData.Message($"Атака: {attack,3}, защита: {defense,3}, выносливость: {stamina,3}");
+        public void Show() => OutputData.Message($"Атака: {attack,3}, защита: {defense,3}, выносливость: {stamina,3}\n");
 
         /// <summary>
         /// Увеличивает счётчик созданных экземпляров
@@ -81,31 +81,63 @@ namespace Task1
         /// <summary>
         /// Показывает количество созданных экземпляров
         /// </summary>
-        public static void ShowCount() => OutputData.Message("Количество созданных покемонов: " + count);
+        public static void ShowCount() => OutputData.Message($"Количество созданных покемонов:  {count}\n");
 
-        static void IncreaseAttack(int increase)
+        /// <summary>
+        /// Увеличивает атаку покемона, если возможно
+        /// </summary>
+        /// <param name="pokemon">Покемон</param>
+        /// <param name="increase">Увеличение</param>
+        public static Pokemon IncreaseAttack(Pokemon pokemon, int increase)
         {
-            
+            var isCorrect = ValidateIncrease(pokemon.stamina, increase, MAX_STAM);
+            if (isCorrect)
+                pokemon.attack += increase;
+            else
+                OutputData.Error("Превышено максимальное значение выносливости");
+
+            return pokemon;
         }
 
+        /// <summary>
+        /// Увеличивает зашиту покемона, если возможно
+        /// </summary>
+        /// <param name="pokemon">Покемон</param>
+        /// <param name="increase">Увеличение</param>
+        public static Pokemon IncreaseDefense(Pokemon pokemon, int increase)
+        {
+            var isCorrect = ValidateIncrease(pokemon.stamina, increase, MAX_STAM);
+            if (isCorrect)
+                pokemon.defense += increase;
+            else
+                OutputData.Error("Превышено максимальное значение выносливости");
+
+            return pokemon;
+        }
+
+        /// <summary>
+        /// Увеличивает выносливость покемона, если возможно
+        /// </summary>
+        /// <param name="pokemon">Покемон</param>
+        /// <param name="increase">Увеличение</param>
+        public static Pokemon IncreaseStamina(Pokemon pokemon, int increase)
+        {
+            var isCorrect = ValidateIncrease(pokemon.stamina, increase, MAX_STAM);
+            if (isCorrect)
+                pokemon.stamina += increase;
+            else
+                OutputData.Error("Превышено максимальное значение выносливости");
+
+            return pokemon;
+        }
         
-        static void IncreaseDefense(int increase)
-        {
-
-        }
-
-        
-        static void IncreaseStamina(int increase)
-        {
-
-        }
-
-        
-        static int ValidateIncrease(int current, int min, int max)
-        {
-            int increase = InputData.InputAndValidateInt(min, max, "Введите увеличение");
-            return (increase + current) <= max ? increase : 0;
-        }
+        /// <summary>
+        /// Проверяет возможность увеличения характеристики
+        /// </summary>
+        /// <param name="current">Текущее значение</param>
+        /// <param name="max">Верхняя граница характеристики</param>
+        /// <returns></returns>
+        static bool ValidateIncrease(int current, int increase, int max) =>  current + increase <= max;
 
     }
 }

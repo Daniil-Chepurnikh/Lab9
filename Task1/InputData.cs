@@ -27,9 +27,7 @@ namespace Task1
                 isCorrect = int.TryParse(Console.ReadLine(), out number);
 
                 if (!isCorrect)
-                {
                     OutputData.Error(error);
-                }
 
             } while (!isCorrect);
             return number;
@@ -60,13 +58,13 @@ namespace Task1
                 OutputData.Message(message);
 
                 number = InputInt(message, NOT_INTEGER);
-                if(!ValidateInt(number, min, max))
+                if (!ValidateInt(number, min, max))
                 {
                     OutputData.Error(OUT_OF_RANGE);
                     isValid = false;
                 }
 
-            } while(!isValid);
+            } while (!isValid);
             return number;
         }
     }
