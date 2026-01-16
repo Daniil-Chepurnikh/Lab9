@@ -1,6 +1,6 @@
 ﻿// GoodPractice: ОТДЕЛЬНЫЙ КЛАСС - ОТДЕЛЬНЫЙ ФАЙЛ
 // GoodPractice: Не пиши лишних/очевидных вещей
-// GoodPractice: ровный вывод в консоль $"{значение, желаемая ширина}"
+// GoodPractice: ровный вывод в консоль $"{значение, ширина}"
 // GoodPractice: Ровные столбики в программном коде
 
 using System;
@@ -14,6 +14,8 @@ namespace Task1
     {
         static void Main(string[] args)
         {
+            Pokemon.ShowCount();
+
             Pokemon Vanya = new();
             Vanya.Show();
 
