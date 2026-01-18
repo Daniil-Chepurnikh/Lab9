@@ -86,65 +86,41 @@ namespace Task1
         #region Изменение характеристик 
 
         /// <summary>
-        /// Увеличивает атаку покемона, если возможно
+        /// Увеличивает параметры покемона, если возможно, на переданные значения
         /// </summary>
-        /// <param name="pokemon">Покемон</param>
-        /// <param name="increase">Увеличение</param>
-        public static Pokemon IncreaseAttack(Pokemon pokemon, int increase)
+        /// <param name="incAtk">Атака</param>
+        /// <param name="incDef">Защита</param>
+        /// <param name="incStam">Выносливость</param>
+        /// <returns>Изменённый покемон</returns>
+        public Pokemon IncreaseParameters(int incAtk, int incDef, int incStam)
         {
-            var isCorrect = ValidateIncrease(pokemon.stamina, increase, MAX_ATK);
-            if (isCorrect)
-                pokemon.attack += increase;
-            else
-                OutputData.Error("Превышено максимальное значение атаки");
-
-            return pokemon;
+            IncreaseAttack(incAtk);
+            IncreaseDefense(incDef);
+            IncreaseStamina(incStam);
+            return this;
         }
 
         /// <summary>
-        /// Увеличивает зашиту покемона, если возможно
+        /// Увеличивает параметры покемона, если возможно, на переданные значения
         /// </summary>
-        /// <param name="pokemon">Покемон</param>
-        /// <param name="increase">Увеличение</param>
-        public static Pokemon IncreaseDefense(Pokemon pokemon, int increase)
+        /// <param name="p">Изменяемый покемон</param>
+        /// <param name="incAtk">Атака</param>
+        /// <param name="incDef">Защита</param>
+        /// <param name="incStam">Выносливость</param>
+        /// <returns>Изменённый покемон</returns>
+        public static Pokemon IncreaseParameters(Pokemon p, int incAtk, int incDef, int incStam)
         {
-            var isCorrect = ValidateIncrease(pokemon.stamina, increase, MAX_DEF);
-            if (isCorrect)
-                pokemon.defense += increase;
-            else
-                OutputData.Error("Превышено максимальное значение выносливости");
-
-            return pokemon;
-        }
-
-        /// <summary>
-        /// Увеличивает выносливость покемона, если возможно
-        /// </summary>
-        /// <param name="pokemon">Покемон</param>
-        /// <param name="increase">Увеличение</param>
-        public static Pokemon IncreaseStamina(Pokemon pokemon, int increase)
-        {
-            var isCorrect = ValidateIncrease(pokemon.stamina, increase, MAX_STAM);
-            if (isCorrect)
-                pokemon.stamina += increase;
-            else
-                OutputData.Error("Превышено максимальное значение выносливости");
-
-            return pokemon;
+            p.IncreaseParameters(incAtk, incDef, incStam);
+            return p;
         }
 
         /// <summary>
         /// Увеличивает атаку покемона, если возможно
         /// </summary>
         /// <param name="increase">Увеличение</param>
-        public Pokemon IncreaseAttack(int increase)
+        Pokemon IncreaseAttack(int increase)
         {
-            var isCorrect = ValidateIncrease(stamina, increase, MAX_ATK);
-            if (isCorrect)
-                attack += increase;
-            else
-                OutputData.Error("Превышено максимальное значение атаки");
-
+            attack = Math.Clamp(attack + increase, MIN_ATK, MAX_ATK);
             return this;
         }
 
@@ -152,14 +128,9 @@ namespace Task1
         /// Увеличивает зашиту покемона, если возможно
         /// </summary>
         /// <param name="increase">Увеличение</param>
-        public Pokemon IncreaseDefense(int increase)
+        Pokemon IncreaseDefense(int increase)
         {
-            var isCorrect = ValidateIncrease(stamina, increase, MAX_DEF);
-            if (isCorrect)
-                defense += increase;
-            else
-                OutputData.Error("Превышено максимальное значение выносливости");
-
+            defense = Math.Clamp(defense + increase, MIN_DEF, MAX_DEF);
             return this;
         }
 
@@ -167,25 +138,11 @@ namespace Task1
         /// Увеличивает выносливость покемона, если возможно
         /// </summary>
         /// <param name="increase">Увеличение</param>
-        public Pokemon IncreaseStamina(int increase)
+        Pokemon IncreaseStamina(int increase)
         {
-            var isCorrect = ValidateIncrease(stamina, increase, MAX_STAM);
-            if (isCorrect)
-                stamina += increase;
-            else
-                OutputData.Error("Превышено максимальное значение выносливости");
-
+            stamina = Math.Clamp(stamina + increase, MIN_STAM, MAX_STAM);
             return this;
         }
-
-
-        /// <summary>
-        /// Проверяет возможность увеличения характеристики
-        /// </summary>
-        /// <param name="current">Текущее значение</param>
-        /// <param name="max">Верхняя граница характеристики</param>
-        /// <returns></returns>
-        static bool ValidateIncrease(int current, int increase, int max) =>  current + increase <= max;
 
         #endregion
 
@@ -196,7 +153,7 @@ namespace Task1
         /// <param name="def">Защита покемона</param>
         /// <param name="stam">Выносливость покемона</param>
         /// <returns>Число с округлением до сотых</returns>
-        public double CalculatePower(int atk, int def, int stam) => Math.Round(atk / 10 * Math.Sqrt(def) * Math.Sqrt(stam), 3);
+        public double CalculatePower() => Math.Round(attack / 10.0 * Math.Sqrt(defense) * Math.Sqrt(stamina), 2);
 
     }
 }

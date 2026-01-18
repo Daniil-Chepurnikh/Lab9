@@ -7,9 +7,6 @@ using System;
 
 namespace Task1
 {
-    /// <summary>
-    /// Демонстрация работы программы
-    /// </summary>
     internal class Program
     {
         static void Main(string[] args)
@@ -27,20 +24,12 @@ namespace Task1
 
             Pokemon.ShowCount();
 
-            Pokemon.IncreaseAttack(Vanya, 100);
+            Vanya.IncreaseParameters(111, 222, 333);
+            Pokemon.IncreaseParameters(Petya, 1, 1, 1);
+            Sidya.IncreaseParameters(111, 222, 333);
             Vanya.Show();
-
-            Pokemon.IncreaseDefense(Petya, 100);
             Petya.Show();
-
-            Pokemon.IncreaseStamina(Sidya, 100);
             Sidya.Show();
-
-            Vanya.IncreaseAttack(111);  // Ваня, возьми меч поострее
-            Vanya.IncreaseDefense(111); // Ваня, надень кольчугу покрепче
-            Vanya.IncreaseStamina(111); // Ваня, возьми землицы русской
-            Vanya.Show();               // Ваня, покажи этим супостатам
-
         }
     }
 }
