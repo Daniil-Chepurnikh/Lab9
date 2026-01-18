@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Task1
+﻿namespace Task1
 {
     public class Pokemon
     {
@@ -76,12 +74,12 @@ namespace Task1
         /// <summary>
         /// Увеличивает счётчик созданных экземпляров
         /// </summary>
-        void IncCount() => count++;
+        static void IncCount() => count++;
 
         /// <summary>
         /// Показывает количество созданных экземпляров
         /// </summary>
-        public static void ShowCount() => OutputData.Message($"Количество созданных покемонов:  {count}\n");
+        public static void ShowCount() => OutputData.Message($"Количество созданных покемонов: {count}\n");
 
         #region Изменение характеристик 
 
@@ -153,7 +151,7 @@ namespace Task1
         /// <param name="def">Защита покемона</param>
         /// <param name="stam">Выносливость покемона</param>
         /// <returns>Число с округлением до сотых</returns>
-        public double CalculatePower() => Math.Round(attack / 10.0 * Math.Sqrt(defense) * Math.Sqrt(stamina), 2);
+        public double CalculatePower() => Math.Round(Math.Sqrt(defense) * Math.Sqrt(stamina) / 10 * attack, 2);
 
     }
 }
