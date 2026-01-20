@@ -53,8 +53,6 @@ namespace Task1
             int number;
             do
             {
-                OutputData.Message(message);
-
                 number = InputInt(message, NOT_INTEGER);
                 if (!ValidateInt(number, min, max))
                 {
