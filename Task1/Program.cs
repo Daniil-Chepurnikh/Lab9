@@ -27,6 +27,7 @@ namespace Task1
             Vanya.IncreaseParameters(111, 222, 333);
             Pokemon.IncreaseParameters(Petya, 1, 1, 1);
             Sidya.IncreaseParameters(111, 222, 333);
+            
             Vanya.Show();
             Petya.Show();
             Sidya.Show();
