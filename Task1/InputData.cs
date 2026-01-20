@@ -5,10 +5,8 @@ namespace Task1
     internal static class InputData
     {
         #region Сообщения об ошибках
-
         const string OUT_OF_RANGE = "Число не входит в разрешённый дипазон";
         const string NOT_INTEGER = "Введено не целое число";
-
         #endregion
 
         /// <summary>
@@ -40,7 +38,7 @@ namespace Task1
         /// <param name="max">Правая граница диапазона</param>
         /// <param name="number">Проверяемое число</param>
         /// <returns>true если принадлежит</returns>
-        static bool ValidateInt(int min, int max, int number) => number >= min && number <= max;
+        static bool ValidateInt(int number, int min, int max) => number >= min && number <= max;
 
         /// <summary>
         /// Читает корректное целое число в необходимом диапазоне
