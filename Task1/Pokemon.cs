@@ -187,7 +187,20 @@
         /// <param name="def">Защита покемона</param>
         /// <param name="stam">Выносливость покемона</param>
         /// <returns>Число с округлением до сотых</returns>
-        public double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
+        double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
 
+        /// <summary>
+        /// Считает и возвращает мощность покемона
+        /// </summary>
+        /// <param name="p">Покемон</param>
+        /// <returns>Мощность(округляя до 0,01)</returns>
+        public static double operator ~(Pokemon p) => p.CalculatePower();
+
+        // TODO: Переопределить операции:
+        // TODO: -- уменьшение выносливости покемона на 1
+        // TODO: int (явная) сумма всех характеристик покемона
+        // TODO: double (неявная) среднее значение всех характеристик покемона до двух знаков после запятой
+        // TODO: >> Pokemon p, целое число – результатом является объект p, у которого увеличивается выносливость на заданное целое число единиц(правосторонняя операция)
+        // TODO: > Pokemon p, целое число – результатом является объект p, у которого увеличивается защита на заданное целое число единиц (правосторонняя операция)
     }
 }

@@ -31,6 +31,8 @@ namespace Task1
             Vanya.Show();
             Petya.Show();
             Sidya.Show();
+
+            OutputData.Message($"Мощность {nameof(Vanya)}: {~Vanya}\n"); // экспериментирую. сказано это делается при компиляции
         }
     }
 }
