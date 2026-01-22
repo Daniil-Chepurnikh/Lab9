@@ -39,6 +39,8 @@ namespace Task1
 
             Sidya = Sidya >> 11;
             OutputData.Message($"{nameof(Sidya)} {Sidya.Show()}");
+
+            OutputData.Message($"Сумма характеристик {nameof(Vanya)}: {(int)Vanya}\n"); 
         }
     }
 }
