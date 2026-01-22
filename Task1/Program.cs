@@ -11,7 +11,7 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Pokemon.ShowCount();
+            OutputData.Message(Pokemon.ShowCount());
 
             Pokemon Vanya = new();
             OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
@@ -22,7 +22,7 @@ namespace Task1
             Pokemon Sidya = new(Petya);
             OutputData.Message($"{nameof(Sidya)} {Sidya.Show()}");
 
-            Pokemon.ShowCount();
+            OutputData.Message(Pokemon.ShowCount());
 
             Vanya.IncreaseParameters(111, 222, 333);
             Pokemon.IncreaseParameters(Petya, 1, 1, 1);
