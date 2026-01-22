@@ -19,43 +19,52 @@
         int defense;
         int stamina;
 
+        /// <summary>
+        /// Работа с атакой 
+        /// </summary>
         public int Attack
         {
             get => attack;
             set
             {
                 if (value < MIN_ATK)
-                    attack = MIN_ATK;
+                    throw new ArgumentOutOfRangeException($"По условию атака не может быть меньше {MIN_ATK}");
                 else if (value > MAX_ATK)
-                    attack = MAX_ATK;
-                else 
+                    throw new ArgumentOutOfRangeException($"По условию атака не может быть больше {MAX_ATK}");
+                else
                     attack = value;
             }
         }
 
+        /// <summary>
+        /// Работа с защитой
+        /// </summary>
         public int Defense
         {
             get => defense;
             set
             {
                 if (value < MIN_DEF)
-                    defense = MIN_DEF;
+                    throw new ArgumentOutOfRangeException($"По условию защита не может быть меньше {MIN_DEF}");
                 else if (value > MAX_DEF)
-                    defense = MAX_DEF;
+                    throw new ArgumentOutOfRangeException($"По условию защита не может быть больше {MAX_DEF}");
                 else
                     defense = value;
             }
         }
 
+        /// <summary>
+        /// Работа с выносливостью
+        /// </summary>
         public int Stamina
         {
             get => stamina;
             set
             {
                 if (value < MIN_STAM)
-                    stamina = MIN_STAM;
+                    throw new ArgumentOutOfRangeException($"По условию выносливость не может быть меньше {MIN_STAM}");
                 else if (value > MAX_STAM)
-                    stamina = MAX_STAM;
+                    throw new ArgumentOutOfRangeException($"По условию выносливость не может быть больше {MAX_STAM}");
                 else
                     stamina = value;
             }
@@ -107,7 +116,7 @@
         /// Печатает все характеристики покемона
         /// </summary>
         /// <param name="p">Конкретный покемон</param>
-        public void Show() => OutputData.Message($"Атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}\n");
+        public string Show() => $"Атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}\n";
 
         /// <summary>
         /// Увеличивает счётчик созданных экземпляров
@@ -117,7 +126,7 @@
         /// <summary>
         /// Показывает количество созданных экземпляров
         /// </summary>
-        public static void ShowCount() => OutputData.Message($"Количество созданных покемонов: {count}\n");
+        public static string ShowCount() => $"Количество созданных покемонов: {count}\n";
 
         #region Увеличение параметров
         /// <summary>
@@ -181,6 +190,13 @@
         #endregion
 
         /// <summary>
+        /// Считает и возвращает мощность покемона
+        /// </summary>
+        /// <param name="p">Покемон</param>
+        /// <returns>Мощность(округляя до 0,01)</returns>
+        public static double operator ~(Pokemon p) => p.CalculatePower();
+
+        /// <summary>
         /// Считает мощность покемона
         /// </summary>
         /// <param name="atk">Атака покемона</param>
@@ -190,17 +206,49 @@
         double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
 
         /// <summary>
-        /// Считает и возвращает мощность покемона
+        /// Уменьшает выносливость покемона на 1
+        /// </summary>
+        /// <param name="p">Покемон, выносливость которого надо уменьшить</param>
+        /// <returns>Изменённый покемон</returns>
+        public static Pokemon operator --(Pokemon p)
+        {
+            Pokemon pokemon = new(p);
+            pokemon.DecrementStamina();
+            return pokemon;
+        }
+        
+        /// <summary>
+        /// Уменьшает выноливость на 1
+        /// </summary>
+        void DecrementStamina() => Stamina--;
+
+        /// <summary>
+        /// Считает сумму всех характеристик покемона 
         /// </summary>
         /// <param name="p">Покемон</param>
-        /// <returns>Мощность(округляя до 0,01)</returns>
-        public static double operator ~(Pokemon p) => p.CalculatePower();
+        public static explicit operator int (Pokemon p) => p.Sum(); // explicit - явное привидение
 
+        /// <summary>
+        /// Считает сумму всех характеристик покемона 
+        /// </summary>
+        /// <returns></returns>
+        int Sum() => Attack + Defense + Stamina;
+
+        /// <summary>
+        /// Увеличивает выносливость покемона на определённое число
+        /// </summary>
+        /// <param name="p">Покемон для увеличения</param>
+        /// <param name="stam">Увеличение</param>
+        /// <returns>Изменённый покемон</returns>
+        public static Pokemon operator >>(Pokemon p, int stam)
+        {
+            Pokemon pokemon = new(p);
+            pokemon.Stamina += stam;
+            return pokemon;
+        }
+        
         // TODO: Переопределить операции:
-        // TODO: -- уменьшение выносливости покемона на 1
-        // TODO: int (явная) сумма всех характеристик покемона
-        // TODO: double (неявная) среднее значение всех характеристик покемона до двух знаков после запятой
-        // TODO: >> Pokemon p, целое число – результатом является объект p, у которого увеличивается выносливость на заданное целое число единиц(правосторонняя операция)
-        // TODO: > Pokemon p, целое число – результатом является объект p, у которого увеличивается защита на заданное целое число единиц (правосторонняя операция)
+        // TODO: double (неявная - implicit) среднее значение всех характеристик покемона до двух знаков после запятой
+        // TODO: > Pokemon p, целое число – результатом является объект p, у которого увеличивается защита на заданное целое число единиц
     }
 }
