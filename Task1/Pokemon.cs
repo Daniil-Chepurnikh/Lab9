@@ -243,7 +243,7 @@
         public static Pokemon operator >>(Pokemon p, int stam)
         {
             Pokemon pokemon = new(p);
-            pokemon.Stamina += stam;
+            pokemon.IncreaseStamina(stam);
             return pokemon;
         }
 
