@@ -246,9 +246,20 @@
             pokemon.Stamina += stam;
             return pokemon;
         }
-        
+
+        /// <summary>
+        /// Считает среднее всех характеристик покемона 
+        /// </summary>
+        /// <param name="p">Покемон</param>
+        public static implicit operator double(Pokemon p) => p.Average(); // implicit - явное привидение
+
+        /// <summary>
+        /// Считает среднее всех характеристик покемона 
+        /// </summary>
+        /// <returns></returns>
+        double Average() => Math.Round(Sum() / 3.0, 2);
+
         // TODO: Переопределить операции:
-        // TODO: double (неявная - implicit) среднее значение всех характеристик покемона до двух знаков после запятой
         // TODO: > Pokemon p, целое число – результатом является объект p, у которого увеличивается защита на заданное целое число единиц
     }
 }
