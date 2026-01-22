@@ -14,13 +14,13 @@ namespace Task1
             Pokemon.ShowCount();
 
             Pokemon Vanya = new();
-            Vanya.Show();
+            OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
 
             Pokemon Petya = new(111, 111, 111);
-            Petya.Show();
+            OutputData.Message($"{nameof(Petya)} {Petya.Show()}");
 
             Pokemon Sidya = new(Petya);
-            Sidya.Show();
+            OutputData.Message($"{nameof(Sidya)} {Sidya.Show()}");
 
             Pokemon.ShowCount();
 
@@ -28,11 +28,17 @@ namespace Task1
             Pokemon.IncreaseParameters(Petya, 1, 1, 1);
             Sidya.IncreaseParameters(111, 222, 333);
             
-            Vanya.Show();
-            Petya.Show();
-            Sidya.Show();
+            OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
+            OutputData.Message($"{nameof(Petya)} {Petya.Show()}");
+            OutputData.Message($"{nameof(Sidya)} {Sidya.Show()}");
 
             OutputData.Message($"Мощность {nameof(Vanya)}: {~Vanya}\n"); // экспериментирую. сказано это делается при компиляции
+
+            Petya = --Petya;
+            OutputData.Message($"{nameof(Petya)} {Petya.Show()}");
+
+            Sidya = Sidya >> 11;
+            OutputData.Message($"{nameof(Sidya)} {Sidya.Show()}");
         }
     }
 }
