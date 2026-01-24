@@ -21,5 +21,7 @@ namespace Task1
             Console.Write(message);
             Console.ResetColor();
         }
+
+        public static void Separetor() => Message("<===><=====><========><============>\n\n", ConsoleColor.DarkGreen);
     }
 }
