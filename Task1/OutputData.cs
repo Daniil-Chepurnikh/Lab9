@@ -11,7 +11,7 @@ namespace Task1
         public static void Error(string error) => Message($"Ошибка: {error}!", ConsoleColor.Red);
 
         /// <summary>
-        /// Печатаеn красивые сообщения
+        /// Печатает красивые сообщения
         /// </summary>
         /// <param name="message">Сообщение на печать</param>
         /// <param name="color">Цвет текста</param>
@@ -22,6 +22,9 @@ namespace Task1
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Печатает разделители
+        /// </summary>
         public static void Separetor() => Message("<===><=====><========><============>\n\n", ConsoleColor.DarkGreen);
     }
 }
