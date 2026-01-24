@@ -43,7 +43,19 @@ namespace Task1
             OutputData.Message($"Сумма характеристик {nameof(Vanya)}: {(int)Vanya}\n");
 
             double average = Vanya;
-            OutputData.Message($"Сумма характеристик {nameof(Vanya)}: {average}\n");
+            OutputData.Message($"Среднее характеристик {nameof(Vanya)}: {average}\n");
+
+            Vanya = Vanya > 90;
+            OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
+            Vanya = -90 > Vanya;
+            OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
+
+
+            Vanya = Vanya < 90;
+            OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
+            Vanya = -90 < Vanya;
+            OutputData.Message($"{nameof(Vanya)} {Vanya.Show()}");
+
         }
     }
 }
