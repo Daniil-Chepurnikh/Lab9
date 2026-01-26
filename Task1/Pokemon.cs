@@ -282,7 +282,7 @@
         /// <returns>Покемон с изменённой защитой</returns>
         public static Pokemon operator >(int incDef, Pokemon p) => p > incDef;
 
-
+        // TODO: Написать метод поиска моды выносливости покемонов по индексатору
 
     }
 }
