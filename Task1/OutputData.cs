@@ -8,7 +8,7 @@ namespace Task1
         /// Печатает ошибки
         /// </summary>
         /// <param name="error">Печатаемая ошибка</param>
-        public static void Error(string error) => Message($"Ошибка: {error}!", ConsoleColor.Red);
+        public static void Error(string error) => Message($"Ошибка: {error}!\n", ConsoleColor.Red);
 
         /// <summary>
         /// Печатает красивые сообщения

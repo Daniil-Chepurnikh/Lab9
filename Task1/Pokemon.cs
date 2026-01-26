@@ -13,11 +13,11 @@
         const short MAX_STAM = 496;
         #endregion
 
-        static uint count = 0;
-
         int attack;
         int defense;
         int stamina;
+
+        static uint Count { get; set; }
 
         /// <summary>
         /// Работа с атакой 
@@ -25,14 +25,14 @@
         public int Attack
         {
             get => attack;
+            
             set
             {
-                if (value < MIN_ATK)
-                    throw new ArgumentOutOfRangeException($"По условию атака не может быть меньше {MIN_ATK}");
-                else if (value > MAX_ATK)
-                    throw new ArgumentOutOfRangeException($"По условию атака не может быть больше {MAX_ATK}");
-                else
-                    attack = value;
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_ATK, "По условию атака");
+                
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_ATK, "По условию атака");
+
+                attack = value;   
             }
         }
 
@@ -42,14 +42,14 @@
         public int Defense
         {
             get => defense;
+            
             set
             {
-                if (value < MIN_DEF)
-                    throw new ArgumentOutOfRangeException($"По условию защита не может быть меньше {MIN_DEF}");
-                else if (value > MAX_DEF)
-                    throw new ArgumentOutOfRangeException($"По условию защита не может быть больше {MAX_DEF}");
-                else
-                    defense = value;
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_DEF, "По условию защита");
+
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_DEF, "По условию защита");
+
+                defense = value;
             }
         }
 
@@ -59,14 +59,14 @@
         public int Stamina
         {
             get => stamina;
+            
             set
             {
-                if (value < MIN_STAM)
-                    throw new ArgumentOutOfRangeException($"По условию выносливость не может быть меньше {MIN_STAM}");
-                else if (value > MAX_STAM)
-                    throw new ArgumentOutOfRangeException($"По условию выносливость не может быть больше {MAX_STAM}");
-                else
-                    stamina = value;
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_STAM, "По условию выносливость");
+
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_STAM, "По условию выносливость");
+
+                stamina = value;
             }
         }
 
@@ -80,7 +80,7 @@
             Defense = MIN_DEF;
             Stamina = MIN_STAM;
 
-            IncCount();
+            Count++;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@
             Defense = def;
             Stamina = stam;
 
-            IncCount();
+            Count++;
         }
 
         /// <summary>
@@ -104,11 +104,13 @@
         /// <param name="p">Копируемый экземпляр</param>
         public Pokemon(Pokemon p)
         {
+            ArgumentNullException.ThrowIfNull(p, "Невозможно скопировать покемона по null");
+
             Attack = p.attack;
             Defense = p.defense;
             Stamina = p.stamina;
 
-            IncCount();
+            Count++;
         }
         #endregion
 
@@ -119,14 +121,9 @@
         public string Show() => $"Атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}\n";
 
         /// <summary>
-        /// Увеличивает счётчик созданных экземпляров
-        /// </summary>
-        static void IncCount() => count++;
-
-        /// <summary>
         /// Показывает количество созданных экземпляров
         /// </summary>
-        public static string ShowCount() => $"Количество созданных покемонов: {count}\n";
+        public static string ShowCount() => $"Количество созданных покемонов: {Count}\n";
 
         #region Увеличение параметров
         /// <summary>
@@ -144,7 +141,7 @@
         }
 
         /// <summary>
-        /// Увеличивает параметры покемона, если возможно, на переданные значения
+        /// Увеличивает параметры покемона на переданные значения
         /// </summary>
         /// <param name="incAtk">Атака</param>
         /// <param name="incDef">Защита</param>
@@ -186,9 +183,6 @@
         /// <summary>
         /// Считает мощность покемона
         /// </summary>
-        /// <param name="atk">Атака покемона</param>
-        /// <param name="def">Защита покемона</param>
-        /// <param name="stam">Выносливость покемона</param>
         /// <returns>Число с округлением до сотых</returns>
         double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
 
