@@ -13,7 +13,11 @@ namespace Task1
         {
             OutputData.Message(Pokemon.ShowCount());
             OutputData.Separetor();
-            
+
+            Pokemon sanya = new(399);
+            OutputData.Message($"{nameof(sanya)} {sanya.Show()}");
+            OutputData.Separetor();
+
             Pokemon vanya = new();
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();

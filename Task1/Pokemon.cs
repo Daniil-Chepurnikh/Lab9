@@ -112,6 +112,15 @@
 
             Count++;
         }
+
+        /// <summary>
+        /// Конструктором с инициализатором
+        /// </summary>
+        /// <param name="atk">Атака покемона</param>
+        public Pokemon(int atk) :this()
+        {
+            Attack = atk;
+        }
         #endregion
 
         /// <summary>
