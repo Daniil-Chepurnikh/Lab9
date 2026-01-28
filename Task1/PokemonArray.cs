@@ -7,6 +7,11 @@ namespace Task1
         Pokemon[] pokemons;
 
         /// <summary>
+        /// Датчик случайных чисел
+        /// </summary>
+        static Random random = new();
+        
+        /// <summary>
         /// Инициализация по умолчанию
         /// </summary>
         public PokemonArray() 
