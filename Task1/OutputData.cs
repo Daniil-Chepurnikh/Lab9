@@ -2,6 +2,9 @@
 
 namespace Task
 {
+    /// <summary>
+    /// Обраьная связь пользователю
+    /// </summary>
     internal static class OutputData
     {
         /// <summary>

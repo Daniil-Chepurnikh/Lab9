@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace Task
+﻿namespace Task
 {
+    /// <summary>
+    /// Коллекция покемонов
+    /// </summary>
     internal class PokemonArray
     {
         Pokemon[] pokemons;
@@ -10,11 +11,11 @@ namespace Task
         /// Датчик случайных чисел
         /// </summary>
         static Random random = new();
-        
+
         /// <summary>
         /// Инициализация по умолчанию
         /// </summary>
-        public PokemonArray() 
+        public PokemonArray()
         {
             // TODO: Разобраться по материалам как сделать конструктор без параметров
         }

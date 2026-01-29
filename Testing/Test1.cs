@@ -8,7 +8,7 @@ namespace Testing
         [TestMethod]
         public void TestMethod1()
         { 
-            Pokemon p  = new();
+            Pokemon p = new();
         }
     }
 }

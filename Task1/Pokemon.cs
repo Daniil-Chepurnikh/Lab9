@@ -1,5 +1,8 @@
 ﻿namespace Task
 {
+    /// <summary>
+    /// Основной класс лабы
+    /// </summary>
     public class Pokemon
     {
         #region Диапазон значений
@@ -25,7 +28,6 @@
         public int Attack
         {
             get => attack;
-            
             set
             {
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_ATK, "По условию атака");
@@ -42,7 +44,6 @@
         public int Defense
         {
             get => defense;
-            
             set
             {
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_DEF, "По условию защита");
@@ -59,7 +60,6 @@
         public int Stamina
         {
             get => stamina;
-            
             set
             {
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_STAM, "По условию выносливость");

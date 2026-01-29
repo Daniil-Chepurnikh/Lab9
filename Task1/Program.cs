@@ -7,6 +7,9 @@ using System;
 
 namespace Task
 {
+    /// <summary>
+    /// Демонстрационная программа
+    /// </summary>
     internal class Program
     {
         static void Main(string[] args)
@@ -22,7 +25,7 @@ namespace Task
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
             
-            Pokemon petya = new(17, 32, 1);
+            Pokemon petya = new(99, 99, 99);
             OutputData.Message($"{nameof(petya)} {petya.Show()}");
             OutputData.Separetor();
             
@@ -81,8 +84,7 @@ namespace Task
 
             try
             {
-                Pokemon danya = null;
-                Pokemon oooops = new(danya);
+                Pokemon oooops = new(null);
             }
             catch (ArgumentNullException e)
             {
