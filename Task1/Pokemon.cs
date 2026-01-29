@@ -193,7 +193,7 @@
         /// Считает мощность покемона
         /// </summary>
         /// <returns>Число с округлением до сотых</returns>
-        double CalculatePower() => Mathematics.Round(Mathematics.Sqrt(Defense) * Mathematics.Sqrt(Stamina) / 10 * Attack, 2);
+        double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
 
         /// <summary>
         /// Уменьшает выносливость покемона на 1

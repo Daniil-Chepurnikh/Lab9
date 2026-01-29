@@ -11,9 +11,6 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            int res = Mathematics.Sum(11, 11);
-            OutputData.Message($"{res}");
-
             OutputData.Message(Pokemon.ShowCount());
             OutputData.Separetor();
 
