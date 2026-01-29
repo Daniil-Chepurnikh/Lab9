@@ -1,4 +1,4 @@
-﻿namespace Task1
+﻿namespace Task
 {
     public class Pokemon
     {

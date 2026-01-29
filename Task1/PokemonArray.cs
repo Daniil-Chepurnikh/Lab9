@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task1
+namespace Task
 {
     internal class PokemonArray
     {
@@ -39,8 +39,6 @@ namespace Task1
 
         // TODO: Написать метод для просмотра элементов массива
 
-
-        // TODO: s.jssk.sk.
 
     }
 }

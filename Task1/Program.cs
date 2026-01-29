@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Task1
+namespace Task
 {
     internal class Program
     {
