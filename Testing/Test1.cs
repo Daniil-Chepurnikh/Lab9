@@ -1,10 +1,10 @@
 ﻿namespace Testing
 {
     [TestClass]
-    public sealed class Test
+    public sealed class Test1
     {
         [TestMethod]
-        public void TestSumPositives()
+        public void TestMethod1()
         {
         }
     }
