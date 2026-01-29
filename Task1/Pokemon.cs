@@ -247,7 +247,7 @@
         /// Считает среднее характеристик покемона 
         /// </summary>
         /// <returns></returns>
-        double Average() => Mathematics.Round(Sum() / 3.0, 2);
+        double Average() => Math.Round(Sum() / 3.0, 2);
 
         /// <summary>
         /// Увеличивает атаку покемона на заданное число
