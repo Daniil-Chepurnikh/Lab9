@@ -20,7 +20,7 @@
         int defense;
         int stamina;
 
-        static uint Count { get; set; }
+        public static int Count { get; private set; }
 
         /// <summary>
         /// Работа с атакой 
@@ -128,11 +128,6 @@
         /// </summary>
         /// <param name="p">Конкретный покемон</param>
         public string Show() => $"Атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}\n";
-
-        /// <summary>
-        /// Показывает количество созданных экземпляров
-        /// </summary>
-        public static string ShowCount() => $"Количество созданных покемонов: {Count}\n";
 
         #region Увеличение параметров
         /// <summary>
