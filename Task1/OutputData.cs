@@ -1,14 +1,17 @@
 ﻿using System;
 
-namespace Task1
+namespace Task
 {
+    /// <summary>
+    /// Обраьная связь пользователю
+    /// </summary>
     internal static class OutputData
     {
         /// <summary>
         /// Печатает ошибки
         /// </summary>
         /// <param name="error">Печатаемая ошибка</param>
-        public static void Error(string error) => Message($"Ошибка: {error}!", ConsoleColor.Red);
+        public static void Error(string error) => Message($"Ошибка: {error}!\n", ConsoleColor.Red);
 
         /// <summary>
         /// Печатает красивые сообщения

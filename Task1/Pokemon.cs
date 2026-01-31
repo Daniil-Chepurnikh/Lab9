@@ -1,78 +1,78 @@
-﻿namespace Task1
+﻿namespace Task
 {
+    /// <summary>
+    /// Основной класс лабы
+    /// </summary>
     public class Pokemon
     {
         #region Диапазон значений
-        const short MIN_ATK = 17;
-        const short MAX_ATK = 414;
+        public const short MIN_ATK = 17;
+        public const short MAX_ATK = 414;
 
-        const short MIN_DEF = 32;
-        const short MAX_DEF = 396;
+        public const short MIN_DEF = 32;
+        public const short MAX_DEF = 396;
 
-        const short MIN_STAM = 1;
-        const short MAX_STAM = 496;
+        public const short MIN_STAM = 1;
+        public const short MAX_STAM = 496;
         #endregion
-
-        static uint count = 0;
 
         int attack;
         int defense;
         int stamina;
 
+        public static int Count { get; private set; }
+
         /// <summary>
-        /// Работа с атакой 
+        /// Aтака 
         /// </summary>
         public int Attack
         {
             get => attack;
             set
             {
-                if (value < MIN_ATK)
-                    throw new ArgumentOutOfRangeException($"По условию атака не может быть меньше {MIN_ATK}");
-                else if (value > MAX_ATK)
-                    throw new ArgumentOutOfRangeException($"По условию атака не может быть больше {MAX_ATK}");
-                else
-                    attack = value;
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_ATK, "По условию атака");
+                
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_ATK, "По условию атака");
+
+                attack = value;   
             }
         }
 
         /// <summary>
-        /// Работа с защитой
+        /// Защита
         /// </summary>
         public int Defense
         {
             get => defense;
             set
             {
-                if (value < MIN_DEF)
-                    throw new ArgumentOutOfRangeException($"По условию защита не может быть меньше {MIN_DEF}");
-                else if (value > MAX_DEF)
-                    throw new ArgumentOutOfRangeException($"По условию защита не может быть больше {MAX_DEF}");
-                else
-                    defense = value;
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_DEF, "По условию защита");
+
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_DEF, "По условию защита");
+
+                defense = value;
             }
         }
 
         /// <summary>
-        /// Работа с выносливостью
+        /// Выносливость
         /// </summary>
         public int Stamina
         {
             get => stamina;
             set
             {
-                if (value < MIN_STAM)
-                    throw new ArgumentOutOfRangeException($"По условию выносливость не может быть меньше {MIN_STAM}");
-                else if (value > MAX_STAM)
-                    throw new ArgumentOutOfRangeException($"По условию выносливость не может быть больше {MAX_STAM}");
-                else
-                    stamina = value;
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_STAM, "По условию выносливость");
+
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_STAM, "По условию выносливость");
+
+                stamina = value;
             }
         }
 
         #region Конструкторы
         /// <summary>
-        /// Инициализация минимальными возможными значениями
+        /// По умолчанию
         /// </summary>
         public Pokemon()
         {
@@ -80,7 +80,7 @@
             Defense = MIN_DEF;
             Stamina = MIN_STAM;
 
-            IncCount();
+            Count++;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@
             Defense = def;
             Stamina = stam;
 
-            IncCount();
+            Count++;
         }
 
         /// <summary>
@@ -104,11 +104,22 @@
         /// <param name="p">Копируемый экземпляр</param>
         public Pokemon(Pokemon p)
         {
+            ArgumentNullException.ThrowIfNull(p, "Невозможно скопировать покемона по null");
+
             Attack = p.attack;
             Defense = p.defense;
             Stamina = p.stamina;
 
-            IncCount();
+            Count++;
+        }
+
+        /// <summary>
+        /// Конструктором с инициализатором
+        /// </summary>
+        /// <param name="atk">Атака покемона</param>
+        public Pokemon(int atk) :this()
+        {
+            Attack = atk;
         }
         #endregion
 
@@ -117,16 +128,6 @@
         /// </summary>
         /// <param name="p">Конкретный покемон</param>
         public string Show() => $"Атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}\n";
-
-        /// <summary>
-        /// Увеличивает счётчик созданных экземпляров
-        /// </summary>
-        static void IncCount() => count++;
-
-        /// <summary>
-        /// Показывает количество созданных экземпляров
-        /// </summary>
-        public static string ShowCount() => $"Количество созданных покемонов: {count}\n";
 
         #region Увеличение параметров
         /// <summary>
@@ -144,7 +145,7 @@
         }
 
         /// <summary>
-        /// Увеличивает параметры покемона, если возможно, на переданные значения
+        /// Увеличивает параметры покемона на переданные значения
         /// </summary>
         /// <param name="incAtk">Атака</param>
         /// <param name="incDef">Защита</param>
@@ -186,9 +187,6 @@
         /// <summary>
         /// Считает мощность покемона
         /// </summary>
-        /// <param name="atk">Атака покемона</param>
-        /// <param name="def">Защита покемона</param>
-        /// <param name="stam">Выносливость покемона</param>
         /// <returns>Число с округлением до сотых</returns>
         double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
 
@@ -227,10 +225,10 @@
         /// <param name="p">Покемон для увеличения</param>
         /// <param name="stam">Увеличение</param>
         /// <returns>Изменённый покемон</returns>
-        public static Pokemon operator >>(Pokemon p, int stam)
+        public static Pokemon operator >>(Pokemon p, int increaseStamina)
         {
             Pokemon pokemon = new(p);
-            pokemon.IncreaseStamina(stam);
+            pokemon.IncreaseStamina(increaseStamina);
             return pokemon;
         }
 
@@ -238,7 +236,7 @@
         /// Считает среднее характеристик покемона 
         /// </summary>
         /// <param name="p">Покемон</param>
-        public static implicit operator double(Pokemon p) => p.Average(); // implicit - явное привидение
+        public static implicit operator double(Pokemon p) => p.Average(); // implicit - неявное привидение
 
         /// <summary>
         /// Считает среднее характеристик покемона 
@@ -287,8 +285,5 @@
         /// <param name="p">Покемон3</param>
         /// <returns>Покемон с изменённой защитой</returns>
         public static Pokemon operator >(int incDef, Pokemon p) => p > incDef;
-
-
-
     }
 }
