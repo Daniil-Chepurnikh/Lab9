@@ -162,19 +162,19 @@
         /// Увеличивает атаку покемона
         /// </summary>
         /// <param name="incAtk">Увеличение</param>
-        void IncreaseAttack(int incAtk) => Attack = attack + incAtk;
+        void IncreaseAttack(int incAtk) => Attack += incAtk;
 
         /// <summary>
         /// Увеличивает зашиту покемона
         /// </summary>
         /// <param name="incDef">Увеличение</param>
-        void IncreaseDefense(int incDef) => Defense = defense + incDef;
+        void IncreaseDefense(int incDef) => Defense += incDef;
 
         /// <summary>
         /// Увеличивает выносливость покемона, если возможно
         /// </summary>
         /// <param name="incStam">Увеличение</param>
-        void IncreaseStamina(int incStam) => Stamina = stamina + incStam;
+        void IncreaseStamina(int incStam) => Stamina += incStam;
         #endregion
 
         /// <summary>
