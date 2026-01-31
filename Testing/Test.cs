@@ -229,30 +229,82 @@ namespace Testing
         }
         #endregion
 
-        [TestMethod]
-        public void TestCountMany()
-        {
-            Pokemon p1 = new();
-            Pokemon p2 = new();
-            Pokemon p3 = new();
-            Pokemon p4 = new();
 
-            Assert.AreEqual(4, Pokemon.Count);
+        #region Тестирование переопределённых операций
+        [TestMethod]
+        public void TestCalculatePower1()
+        {
+            Pokemon p = new(100, 273, 111);
+            double power = ~p;
+
+            Assert.AreEqual(1740.78, power);
         }
 
         [TestMethod]
-        public void TestCountOne()
+        public void TestCalculatePower2()
         {
-            Pokemon p = new();
-            
-            Assert.AreEqual(1, Pokemon.Count);
+            Pokemon p = new(100, 111, 111);
+            double power = ~p;
+
+            Assert.AreEqual(1110.0, power);
         }
 
         [TestMethod]
-        public void TestCountZero()
+        public void TestSum()
         {
-            Assert.AreEqual(0, Pokemon.Count);
+            Pokemon p = new(100, 273, 111);
+            int sum = (int)p;
+
+            Assert.AreEqual(484, sum);
         }
 
+        [TestMethod]
+        public void TestAverage()
+        {
+            Pokemon p = new(100, 273, 111);
+            double average = p;
+
+            Assert.AreEqual(161.33, average);
+        }
+
+        [TestMethod]
+        public void TestIncreaseAttack1()
+        {
+            Pokemon p = new(100, 273, 111);
+            p = p > 100;
+
+            Assert.AreEqual(373, p.Defense);
+        }
+
+        [TestMethod]
+        public void TestIncreaseAttack2()
+        {
+            Pokemon p = new(100, 273, 111);
+            p = 100 > p;
+
+            Assert.AreEqual(373, p.Defense);
+        }
+
+        [TestMethod]
+        public void TestIncreaseDefense1()
+        {
+            Pokemon p = new(100, 273, 111);
+            p = p < 100;
+
+            Assert.AreEqual(200, p.Attack);
+        }
+
+        [TestMethod]
+        public void TestIncreaseDefense2()
+        {
+            Pokemon p = new(100, 273, 111);
+            p = 100 < p;
+
+            Assert.AreEqual(200, p.Attack);
+        }
+
+
+
+        #endregion
     }
 }

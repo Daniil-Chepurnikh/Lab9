@@ -48,7 +48,6 @@ namespace Task
                 OutputData.Error(e.Message);
             }
 
-
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
