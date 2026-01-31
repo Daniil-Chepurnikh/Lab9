@@ -6,14 +6,14 @@
     public class Pokemon
     {
         #region Диапазон значений
-        const short MIN_ATK = 17;
-        const short MAX_ATK = 414;
+        public const short MIN_ATK = 17;
+        public const short MAX_ATK = 414;
 
-        const short MIN_DEF = 32;
-        const short MAX_DEF = 396;
+        public const short MIN_DEF = 32;
+        public const short MAX_DEF = 396;
 
-        const short MIN_STAM = 1;
-        const short MAX_STAM = 496;
+        public const short MIN_STAM = 1;
+        public const short MAX_STAM = 496;
         #endregion
 
         int attack;
@@ -72,7 +72,7 @@
 
         #region Конструкторы
         /// <summary>
-        /// Инициализация минимальными возможными значениями
+        /// По умолчанию
         /// </summary>
         public Pokemon()
         {
@@ -290,8 +290,5 @@
         /// <param name="p">Покемон3</param>
         /// <returns>Покемон с изменённой защитой</returns>
         public static Pokemon operator >(int incDef, Pokemon p) => p > incDef;
-
-        // TODO: Написать метод поиска моды выносливости покемонов по индексатору
-
     }
 }

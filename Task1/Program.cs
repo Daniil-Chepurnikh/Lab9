@@ -38,8 +38,17 @@ namespace Task
             
             vanya.IncreaseParameters(111, 222, 333);
             Pokemon.IncreaseParameters(petya, 1, 1, 1);
-            sidya.IncreaseParameters(111, 222, 333);
-            
+
+            try
+            {
+                sidya.IncreaseParameters(1000, 222, 333);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
+
+
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
