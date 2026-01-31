@@ -23,7 +23,7 @@
         public static int Count { get; private set; }
 
         /// <summary>
-        /// Работа с атакой 
+        /// Aтака 
         /// </summary>
         public int Attack
         {
@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// Работа с защитой
+        /// Защита
         /// </summary>
         public int Defense
         {
@@ -55,7 +55,7 @@
         }
 
         /// <summary>
-        /// Работа с выносливостью
+        /// Выносливость
         /// </summary>
         public int Stamina
         {
@@ -225,10 +225,10 @@
         /// <param name="p">Покемон для увеличения</param>
         /// <param name="stam">Увеличение</param>
         /// <returns>Изменённый покемон</returns>
-        public static Pokemon operator >>(Pokemon p, int stam)
+        public static Pokemon operator >>(Pokemon p, int increaseStamina)
         {
             Pokemon pokemon = new(p);
-            pokemon.IncreaseStamina(stam);
+            pokemon.IncreaseStamina(increaseStamina);
             return pokemon;
         }
 
@@ -236,7 +236,7 @@
         /// Считает среднее характеристик покемона 
         /// </summary>
         /// <param name="p">Покемон</param>
-        public static implicit operator double(Pokemon p) => p.Average(); // implicit - явное привидение
+        public static implicit operator double(Pokemon p) => p.Average(); // implicit - неявное привидение
 
         /// <summary>
         /// Считает среднее характеристик покемона 
