@@ -14,7 +14,7 @@ namespace Task
     {
         static void Main(string[] args)
         {
-            OutputData.Message(Pokemon.ShowCount());
+            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
             OutputData.Separetor();
 
             Pokemon sanya = new(399);
@@ -33,7 +33,7 @@ namespace Task
             OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
             OutputData.Separetor();
             
-            OutputData.Message(Pokemon.ShowCount());
+            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
             OutputData.Separetor();
             
             vanya.IncreaseParameters(111, 222, 333);

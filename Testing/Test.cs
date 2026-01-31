@@ -229,5 +229,30 @@ namespace Testing
         }
         #endregion
 
+        [TestMethod]
+        public void TestCountMany()
+        {
+            Pokemon p1 = new();
+            Pokemon p2 = new();
+            Pokemon p3 = new();
+            Pokemon p4 = new();
+
+            Assert.AreEqual(4, Pokemon.Count);
+        }
+
+        [TestMethod]
+        public void TestCountOne()
+        {
+            Pokemon p = new();
+            
+            Assert.AreEqual(1, Pokemon.Count);
+        }
+
+        [TestMethod]
+        public void TestCountZero()
+        {
+            Assert.AreEqual(0, Pokemon.Count);
+        }
+
     }
 }
