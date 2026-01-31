@@ -229,7 +229,6 @@ namespace Testing
         }
         #endregion
 
-
         #region Тестирование переопределённых операций
         [TestMethod]
         public void TestCalculatePower1()
@@ -268,7 +267,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestIncreaseAttack1()
+        public void TestIncreaseDefense1()
         {
             Pokemon p = new(100, 273, 111);
             p = p > 100;
@@ -277,7 +276,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestIncreaseAttack2()
+        public void TestIncreaseDefense2()
         {
             Pokemon p = new(100, 273, 111);
             p = 100 > p;
@@ -286,7 +285,24 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestIncreaseDefense1()
+        public void TestIncreaseDefense3()
+        {
+            string q = "-";
+            Pokemon p = new(100, 273, 111);
+
+            try
+            {
+                p = 1000 > p;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                q = "+";
+            }
+            Assert.AreEqual("+", q);
+        }
+
+        [TestMethod]
+        public void TestIncreaseAttack1()
         {
             Pokemon p = new(100, 273, 111);
             p = p < 100;
@@ -295,7 +311,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestIncreaseDefense2()
+        public void TestIncreaseAttack2()
         {
             Pokemon p = new(100, 273, 111);
             p = 100 < p;
@@ -303,7 +319,72 @@ namespace Testing
             Assert.AreEqual(200, p.Attack);
         }
 
+        [TestMethod]
+        public void TestIncreaseAttack3()
+        {
+            string q = "-"; 
+            Pokemon p = new(100, 273, 111);
 
+            try
+            {
+                p = 1000 < p;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                q = "+";
+            }
+            Assert.AreEqual("+", q);
+        }
+
+        [TestMethod]
+        public void TestIncreaseStamina1()
+        {
+            Pokemon p = new(100, 273, 111);
+            p = p >> 100;
+
+            Assert.AreEqual(211, p.Stamina);
+        }
+
+        [TestMethod]
+        public void TestIncreaseStamina2()
+        {
+            Pokemon p = new(100, 273, 111);
+            string q = "+";
+            try
+            {
+                p = p >> 1000;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                q = "-";
+            }
+            Assert.AreEqual("-", q);
+        }
+
+        [TestMethod]
+        public void TestDecrementStamina1()
+        {
+            Pokemon p = new(100, 273, 111);
+            p--;
+
+            Assert.AreEqual(110, p.Stamina);
+        }
+
+        [TestMethod]
+        public void TestDecrementStamina2()
+        {
+            Pokemon p = new(100, 273, 1);
+            string q = "+";
+            try
+            {
+                p--;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                q = "-";
+            }
+            Assert.AreEqual("-", q);
+        }
 
         #endregion
     }
