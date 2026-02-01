@@ -64,7 +64,7 @@ namespace Task
             OutputData.Message($"{nameof(petya)} {petya.Show()}");
             OutputData.Separetor();
             
-            sidya = sidya >> 11;
+            sidya >>= 11;
             OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
             OutputData.Separetor();
             

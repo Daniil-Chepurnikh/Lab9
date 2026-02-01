@@ -387,5 +387,74 @@ namespace Testing
         }
 
         #endregion
+
+        [TestMethod]
+        public void TestIncreaseParametrs1()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            p.IncreaseParameters(111, 222, 333);
+
+            Assert.AreEqual(222, p.Attack);
+            Assert.AreEqual(333, p.Defense);
+            Assert.AreEqual(444, p.Stamina);
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs2()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            p.IncreaseParameters(-52, -66, -110);
+
+            Assert.AreEqual(59, p.Attack);
+            Assert.AreEqual(45, p.Defense);
+            Assert.AreEqual(1, p.Stamina);
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs3()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            p.IncreaseParameters(-52, -66, -110);
+
+            // TODO: протестировать сключение слишком большим увеличением
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs4()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            p.IncreaseParameters(-52, -66, -110);
+
+            // TODO: протестировать сключение слишком большим уменьшением
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs5()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            Pokemon.IncreaseParameters(p, -52, -66, -110);
+
+            Assert.AreEqual(59, p.Attack);
+            Assert.AreEqual(45, p.Defense);
+            Assert.AreEqual(1, p.Stamina);
+        }
+
+
+        [TestMethod]
+        public void TestIncreaseParametrs6()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            Pokemon.IncreaseParameters(p, 111, 222, 333);
+
+            Assert.AreEqual(222, p.Attack);
+            Assert.AreEqual(333, p.Defense);
+            Assert.AreEqual(444, p.Stamina);
+        }
     }
 }
