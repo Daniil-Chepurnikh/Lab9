@@ -340,7 +340,7 @@ namespace Testing
         public void TestIncreaseStamina1()
         {
             Pokemon p = new(100, 273, 111);
-            p = p >> 100;
+            p >>= 100;
 
             Assert.AreEqual(211, p.Stamina);
         }
@@ -352,7 +352,7 @@ namespace Testing
             string q = "+";
             try
             {
-                p = p >> 1000;
+                p >>= 1000;
             }
             catch (ArgumentOutOfRangeException)
             {

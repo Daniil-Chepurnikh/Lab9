@@ -17,7 +17,7 @@
         /// </summary>
         public PokemonArray()
         {
-            // TODO: Разобраться по материалам как сделать конструктор без параметров
+            pokemons = [];
         }
 
         /// <summary>
@@ -26,7 +26,12 @@
         /// <param name="length">Длина массива</param>
         public PokemonArray(int length)
         {
-            // TODO: Разобраться по материалам как заполнять элементы случайными числами
+            pokemons = new Pokemon[length];
+
+            for (int p = 0; p < length; p++)
+            {
+                pokemons[p] = new(random.Next(1, 11), random.Next(1, 11), random.Next(1, 11));
+            }
         }
 
         /// <summary>
