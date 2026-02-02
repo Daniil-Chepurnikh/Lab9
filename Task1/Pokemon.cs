@@ -102,13 +102,13 @@
         /// Копирование
         /// </summary>
         /// <param name="p">Копируемый экземпляр</param>
-        public Pokemon(Pokemon p)
+        public Pokemon(Pokemon source)
         {
-            ArgumentNullException.ThrowIfNull(p, "Невозможно скопировать покемона по null");
+            ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать покемона по null");
 
-            Attack = p.attack;
-            Defense = p.defense;
-            Stamina = p.stamina;
+            Attack = source.attack;
+            Defense = source.defense;
+            Stamina = source.stamina;
 
             Count++;
         }
