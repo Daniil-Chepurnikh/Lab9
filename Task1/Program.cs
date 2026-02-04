@@ -37,7 +37,12 @@ namespace Task
             OutputData.Separetor();
             
             vanya.IncreaseParameters(111, 222, 333);
+            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Separetor();
+
             Pokemon.IncreaseParameters(petya, 1, 1, 1);
+            OutputData.Message($"{nameof(petya)} {petya.Show()}");
+            OutputData.Separetor();
 
             try
             {
@@ -47,17 +52,10 @@ namespace Task
             {
                 OutputData.Error(e.Message);
             }
-
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
-
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-
             OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
             OutputData.Separetor();
             
-            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n"); // экспериментирую. сказано это делается при компиляции
+            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
             OutputData.Separetor();
             
             petya = --petya;
@@ -125,7 +123,6 @@ namespace Task
             {
                 OutputData.Error(e.Message);
             }
-
 
 
         }

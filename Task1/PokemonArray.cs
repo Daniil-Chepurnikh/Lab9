@@ -7,6 +7,32 @@
     {
         Pokemon[] pokemons;
 
+        public Pokemon this[int index]
+        {
+            get 
+            {  
+                if (IsInRange(index, 0, pokemons.Length))
+                    return pokemons[index];
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+            set
+            {
+                if (IsInRange(index, 0, pokemons.Length))
+                    pokemons[index] = value;
+                else
+                    throw new ArgumentOutOfRangeException(nameof(index));
+            }
+        }
+
+        /// <summary>
+        /// Проверяет попадание числа в диапазон
+        /// </summary>
+        /// <param name="index">Проверяемое число</param>
+        /// <param name="min">Левая граница диапазона(включительно)</param>
+        /// <param name="max">Правая граница диапазона(НЕ включительно)</param>
+        /// <returns>true если в диапазоне иначе false</returns>
+        bool IsInRange(int index, int min, int max) => index >= min && index < max;
+
         /// <summary>
         /// Датчик случайных чисел
         /// </summary>
@@ -41,10 +67,18 @@
         public PokemonArray(PokemonArray pokemons)
         {
             // TODO: Разобраться по материалам как сделать глубокое копирование
+            ArgumentNullException.ThrowIfNull(pokemons, "Невозможно скопировать по null");
         }
 
-        // TODO: Написать метод для просмотра элементов массива
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Show()
+        {
+            foreach (var p in pokemons)
+            {
+                p.Show();
+            }
+        }
     }
 }
