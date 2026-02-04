@@ -125,7 +125,7 @@ namespace Task
             }
 
             PokemonArray pokemons = new(11);
-            OutputData.Message(ConsoleColor.White, pokemons.Show());
+            OutputData.Message(pokemons.Show());
 
         }
     }
