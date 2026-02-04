@@ -3,7 +3,7 @@
 namespace Task
 {
     /// <summary>
-    /// Обраьная связь пользователю
+    /// Обратная связь пользователю
     /// </summary>
     internal static class OutputData
     {
@@ -24,6 +24,23 @@ namespace Task
             Console.Write(message);
             Console.ResetColor();
         }
+
+        /// <summary>
+        /// Печатает строки
+        /// </summary>
+        /// <param name="color">Цвет печати</param>
+        /// <param name="messages">Массив строк</param>
+        public static void Message( ConsoleColor color = ConsoleColor.White, params string[] messages)
+        {
+            Console.ForegroundColor = color;
+            foreach (var message in messages)
+            {
+                Console.WriteLine(message);
+            }
+            Console.ResetColor();
+        }
+
+
 
         /// <summary>
         /// Печатает разделители
