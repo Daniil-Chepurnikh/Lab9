@@ -124,6 +124,8 @@ namespace Task
                 OutputData.Error(e.Message);
             }
 
+            PokemonArray pokemons = new(11);
+            OutputData.Message(ConsoleColor.White, pokemons.Show());
 
         }
     }

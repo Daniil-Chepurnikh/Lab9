@@ -7,17 +7,19 @@
     {
         Pokemon[] pokemons;
 
+        public int Length => pokemons.Length;
+
         public Pokemon this[int index]
         {
             get 
             {  
-                if (IsInRange(index, 0, pokemons.Length))
+                if (IsInRange(index, 0, Length))
                     return pokemons[index];
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
             set
             {
-                if (IsInRange(index, 0, pokemons.Length))
+                if (IsInRange(index, 0, Length))
                     pokemons[index] = value;
                 else
                     throw new ArgumentOutOfRangeException(nameof(index));
@@ -71,14 +73,17 @@
         }
 
         /// <summary>
-        /// 
+        /// Передаёт информацию о покемонах в массиве
         /// </summary>
-        public string Show()
+        public string[] Show()
         {
-            foreach (var p in pokemons)
+            string[] messages = new string[pokemons.Length];
+
+            for (int p = 0; p < Length; p++)
             {
-                p.Show();
+                messages[p] = pokemons[p].Show();
             }
+            return messages;
         }
     }
 }
