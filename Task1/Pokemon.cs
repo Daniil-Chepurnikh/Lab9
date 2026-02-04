@@ -104,7 +104,7 @@
         /// <param name="p">Копируемый экземпляр</param>
         public Pokemon(Pokemon source)
         {
-            ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать покемона по null");
+            ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать по null");
 
             Attack = source.attack;
             Defense = source.defense;
