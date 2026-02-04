@@ -58,7 +58,7 @@
 
             for (int p = 0; p < length; p++)
             {
-                pokemons[p] = new(random.Next(1, 11), random.Next(1, 11), random.Next(1, 11));
+                pokemons[p] = new(random.Next(111, 122), random.Next(111, 122), random.Next(111, 122));
             }
         }
 
