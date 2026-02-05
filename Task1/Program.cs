@@ -131,15 +131,15 @@ namespace Task
 
         }
 
-        /// <summary>
-        /// Нахдит моду выносливости покемонов
-        /// </summary>
-        /// <param name="collection">Массив покемонов для поиска моды</param>
-        /// <returns></returns>
-        static int FindStaminaMode(PokemonArray collection)
-        {
-            //TODO: написать
-        }
+        ///// <summary>
+        ///// Нахдит моду выносливости покемонов
+        ///// </summary>
+        ///// <param name="collection">Массив покемонов для поиска моды</param>
+        ///// <returns></returns>
+        //static int FindStaminaMode(PokemonArray collection)
+        //{
+        //    //TODO: написать
+        //}
 
     }
 }
