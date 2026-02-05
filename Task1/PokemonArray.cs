@@ -7,6 +7,11 @@
     {
         Pokemon[] pokemons;
 
+        /// <summary>
+        /// Количество созданных коллекций покемонов
+        /// </summary>
+        public static int collectionCount { get; private set; }
+
         public int Length => pokemons.Length;
 
         public Pokemon this[int index]
