@@ -132,8 +132,10 @@ namespace Task
         }
 
         /// <summary>
-        /// Находит моду выносливости покемонов в коллекции.
+        /// Нахдит моду выносливости покемонов
         /// </summary>
+        /// <param name="collection">Массив покемонов для поиска моды</param>
+        /// <returns></returns>
         static int FindStaminaMode(PokemonArray collection)
         {
             //TODO: написать
