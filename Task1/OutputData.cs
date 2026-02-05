@@ -30,7 +30,7 @@ namespace Task
         /// </summary>
         /// <param name="color">Цвет печати</param>
         /// <param name="messages">Массив строк</param>
-        public static void Message(string[] messages, ConsoleColor color = ConsoleColor.White)
+        public static void Message(ConsoleColor color = ConsoleColor.White, params string[] messages)
         {
             Console.ForegroundColor = color;
             foreach (var message in messages)
