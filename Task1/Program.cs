@@ -127,15 +127,17 @@ namespace Task
             PokemonArray pokemons = new(11);
             OutputData.Message(ConsoleColor.White, pokemons.Show());
 
-            /// <summary>
-            /// Находит моду выносливости покемонов в коллекции.
-            /// </summary>
-            static int FindStaminaMode(PokemonArray collection)
-            {
-                //TODO: написать
-            }
 
 
         }
+
+        /// <summary>
+        /// Находит моду выносливости покемонов в коллекции.
+        /// </summary>
+        static int FindStaminaMode(PokemonArray collection)
+        {
+            //TODO: написать
+        }
+
     }
 }
