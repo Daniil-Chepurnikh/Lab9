@@ -416,9 +416,17 @@ namespace Testing
         {
             Pokemon p = new(111, 111, 111);
 
-            p.IncreaseStats(-52, -66, -110);
+            var isPassed = false;
+            try
+            {
+                p.IncreaseStats(1111, -66, -110);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                isPassed = true;
+            }
 
-            // TODO: протестировать сключение слишком большим увеличением
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
@@ -426,33 +434,67 @@ namespace Testing
         {
             Pokemon p = new(111, 111, 111);
 
-            p.IncreaseStats(-52, -66, -110);
+            var isPassed = false;
+            try
+            {
+                p.IncreaseStats(-1111, -66, -110);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                isPassed = true;
+            }
 
-            // TODO: протестировать сключение слишком большим уменьшением
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
-        public void TestIncreaseParametrs5()
+        public void TestEquals1()
         {
-            Pokemon p = new(111, 111, 111);
+            Pokemon p       = new(111, 222, 333);
+            Pokemon pokemon = new(111, 111, 111);
 
-            Pokemon.IncreaseStats(p, -52, -66, -110);
+            var result = pokemon.Equals(p);
 
-            Assert.AreEqual(59, p.Attack);
-            Assert.AreEqual(45, p.Defense);
-            Assert.AreEqual(1, p.Stamina);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void TestIncreaseParametrs6()
+        public void TestEquals2()
         {
             Pokemon p = new(111, 111, 111);
+            Pokemon pokemon = new(111, 111, 111);
 
-            Pokemon.IncreaseStats(p, 111, 222, 333);
+            var result = pokemon.Equals(p);
 
-            Assert.AreEqual(222, p.Attack);
-            Assert.AreEqual(333, p.Defense);
-            Assert.AreEqual(444, p.Stamina);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestEquals3()
+        {
+            Pokemon p       = new(111, 222, 333);
+            bool isPassed   = false;
+            try
+            {
+                var result = p.Equals(null);
+            }
+            catch (ArgumentNullException)
+            {
+                isPassed = true;
+            }
+                
+            Assert.IsTrue(isPassed);
+        }
+
+        [TestMethod]
+        public void TestEquals4()
+        {
+            Pokemon p     = new(111, 222, 333);
+            object  ooops = 1;
+
+            var result = p.Equals(ooops);
+
+            Assert.IsFalse(result);
         }
     }
 }
