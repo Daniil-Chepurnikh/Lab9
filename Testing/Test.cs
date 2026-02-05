@@ -385,7 +385,6 @@ namespace Testing
             }
             Assert.AreEqual("-", q);
         }
-
         #endregion
 
         [TestMethod]
@@ -443,7 +442,6 @@ namespace Testing
             Assert.AreEqual(45, p.Defense);
             Assert.AreEqual(1, p.Stamina);
         }
-
 
         [TestMethod]
         public void TestIncreaseParametrs6()
