@@ -138,9 +138,9 @@
         /// <param name="incDef">Защита</param>
         /// <param name="incStam">Выносливость</param>
         /// <returns>Изменённый покемон</returns>
-        public static Pokemon IncreaseParameters(Pokemon p, int incAtk, int incDef, int incStam)
+        public static Pokemon IncreaseStats(Pokemon p, int incAtk, int incDef, int incStam)
         {
-            p.IncreaseParameters(incAtk, incDef, incStam);
+            p.IncreaseStats(incAtk, incDef, incStam);
             return p;
         }
 
@@ -151,7 +151,7 @@
         /// <param name="incDef">Защита</param>
         /// <param name="incStam">Выносливость</param>
         /// <returns>Изменённый покемон</returns>
-        public void IncreaseParameters(int incAtk, int incDef, int incStam)
+        public void IncreaseStats(int incAtk, int incDef, int incStam)
         {
             IncreaseAttack(incAtk);
             IncreaseDefense(incDef);
