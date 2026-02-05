@@ -36,17 +36,17 @@ namespace Task
             OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
             OutputData.Separetor();
             
-            vanya.IncreaseParameters(111, 222, 333);
+            vanya.IncreaseStats(111, 222, 333);
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
-            Pokemon.IncreaseParameters(petya, 1, 1, 1);
+            Pokemon.IncreaseStats(petya, 1, 1, 1);
             OutputData.Message($"{nameof(petya)} {petya.Show()}");
             OutputData.Separetor();
 
             try
             {
-                sidya.IncreaseParameters(1000, 222, 333);
+                sidya.IncreaseStats(1000, 222, 333);
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -125,7 +125,16 @@ namespace Task
             }
 
             PokemonArray pokemons = new(11);
-            OutputData.Message(pokemons.Show());
+            OutputData.Message(ConsoleColor.White, pokemons.Show());
+
+            /// <summary>
+            /// Находит моду выносливости покемонов в коллекции.
+            /// </summary>
+            static int FindStaminaMode(PokemonArray collection)
+            {
+                //TODO: написать
+            }
+
 
         }
     }
