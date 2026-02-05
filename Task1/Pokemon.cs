@@ -285,5 +285,21 @@
         /// <param name="p">Покемон3</param>
         /// <returns>Покемон с изменённой защитой</returns>
         public static Pokemon operator >(int incDef, Pokemon p) => p > incDef;
+
+        /// <summary>
+        /// Сравнивает на равенство
+        /// </summary>
+        /// <param name="obj">Сравниваемый объект</param>
+        /// <returns>true если объекты равны</returns>
+        public override bool Equals(object? obj)
+        {
+            ArgumentNullException.ThrowIfNull(obj, "Невозможно сравнить значение по null");
+
+            if (obj is Pokemon pokemon)
+                return pokemon.Attack == Attack
+                    && pokemon.Defense == Defense 
+                    && pokemon.Stamina == Stamina;
+            return false;
+        }
     }
 }
