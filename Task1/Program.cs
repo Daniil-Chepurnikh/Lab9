@@ -36,35 +36,33 @@ namespace Task
             OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
             OutputData.Separetor();
             
-            vanya.IncreaseParameters(111, 222, 333);
-            Pokemon.IncreaseParameters(petya, 1, 1, 1);
+            vanya.IncreaseStats(111, 222, 333);
+            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Separetor();
+
+            Pokemon.IncreaseStats(petya, 1, 1, 1);
+            OutputData.Message($"{nameof(petya)} {petya.Show()}");
+            OutputData.Separetor();
 
             try
             {
-                sidya.IncreaseParameters(1000, 222, 333);
+                sidya.IncreaseStats(1000, 222, 333);
             }
             catch (ArgumentOutOfRangeException e)
             {
                 OutputData.Error(e.Message);
             }
-
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
-
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-
             OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
             OutputData.Separetor();
             
-            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n"); // экспериментирую. сказано это делается при компиляции
+            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
             OutputData.Separetor();
             
             petya = --petya;
             OutputData.Message($"{nameof(petya)} {petya.Show()}");
             OutputData.Separetor();
             
-            sidya = sidya >> 11;
+            sidya >>= 11;
             OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
             OutputData.Separetor();
             
@@ -126,8 +124,22 @@ namespace Task
                 OutputData.Error(e.Message);
             }
 
+            PokemonArray pokemons = new(11);
+            OutputData.Message(ConsoleColor.White, pokemons.Show());
+
 
 
         }
+
+        ///// <summary>
+        ///// Нахдит моду выносливости покемонов
+        ///// </summary>
+        ///// <param name="collection">Массив покемонов для поиска моды</param>
+        ///// <returns></returns>
+        //static int FindStaminaMode(PokemonArray collection)
+        //{
+        //    //TODO: написать
+        //}
+
     }
 }

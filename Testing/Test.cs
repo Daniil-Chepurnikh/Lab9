@@ -340,7 +340,7 @@ namespace Testing
         public void TestIncreaseStamina1()
         {
             Pokemon p = new(100, 273, 111);
-            p = p >> 100;
+            p >>= 100;
 
             Assert.AreEqual(211, p.Stamina);
         }
@@ -352,7 +352,7 @@ namespace Testing
             string q = "+";
             try
             {
-                p = p >> 1000;
+                p >>= 1000;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -385,7 +385,116 @@ namespace Testing
             }
             Assert.AreEqual("-", q);
         }
-
         #endregion
+
+        [TestMethod]
+        public void TestIncreaseParametrs1()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            p.IncreaseStats(111, 222, 333);
+
+            Assert.AreEqual(222, p.Attack);
+            Assert.AreEqual(333, p.Defense);
+            Assert.AreEqual(444, p.Stamina);
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs2()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            p.IncreaseStats(-52, -66, -110);
+
+            Assert.AreEqual(59, p.Attack);
+            Assert.AreEqual(45, p.Defense);
+            Assert.AreEqual(1, p.Stamina);
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs3()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            var isPassed = false;
+            try
+            {
+                p.IncreaseStats(1111, -66, -110);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                isPassed = true;
+            }
+
+            Assert.IsTrue(isPassed);
+        }
+
+        [TestMethod]
+        public void TestIncreaseParametrs4()
+        {
+            Pokemon p = new(111, 111, 111);
+
+            var isPassed = false;
+            try
+            {
+                p.IncreaseStats(-1111, -66, -110);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                isPassed = true;
+            }
+
+            Assert.IsTrue(isPassed);
+        }
+
+        [TestMethod]
+        public void TestEquals1()
+        {
+            Pokemon p       = new(111, 222, 333);
+            Pokemon pokemon = new(111, 111, 111);
+
+            var result = pokemon.Equals(p);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void TestEquals2()
+        {
+            Pokemon p = new(111, 111, 111);
+            Pokemon pokemon = new(111, 111, 111);
+
+            var result = pokemon.Equals(p);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestEquals3()
+        {
+            Pokemon p       = new(111, 222, 333);
+            bool isPassed   = false;
+            try
+            {
+                var result = p.Equals(null);
+            }
+            catch (ArgumentNullException)
+            {
+                isPassed = true;
+            }
+                
+            Assert.IsTrue(isPassed);
+        }
+
+        [TestMethod]
+        public void TestEquals4()
+        {
+            Pokemon p     = new(111, 222, 333);
+            object  ooops = 1;
+
+            var result = p.Equals(ooops);
+
+            Assert.IsFalse(result);
+        }
     }
 }

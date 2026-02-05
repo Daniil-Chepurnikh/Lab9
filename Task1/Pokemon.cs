@@ -102,13 +102,13 @@
         /// Копирование
         /// </summary>
         /// <param name="p">Копируемый экземпляр</param>
-        public Pokemon(Pokemon p)
+        public Pokemon(Pokemon source)
         {
-            ArgumentNullException.ThrowIfNull(p, "Невозможно скопировать покемона по null");
+            ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать по null");
 
-            Attack = p.attack;
-            Defense = p.defense;
-            Stamina = p.stamina;
+            Attack = source.attack;
+            Defense = source.defense;
+            Stamina = source.stamina;
 
             Count++;
         }
@@ -138,9 +138,9 @@
         /// <param name="incDef">Защита</param>
         /// <param name="incStam">Выносливость</param>
         /// <returns>Изменённый покемон</returns>
-        public static Pokemon IncreaseParameters(Pokemon p, int incAtk, int incDef, int incStam)
+        public static Pokemon IncreaseStats(Pokemon p, int incAtk, int incDef, int incStam)
         {
-            p.IncreaseParameters(incAtk, incDef, incStam);
+            p.IncreaseStats(incAtk, incDef, incStam);
             return p;
         }
 
@@ -151,7 +151,7 @@
         /// <param name="incDef">Защита</param>
         /// <param name="incStam">Выносливость</param>
         /// <returns>Изменённый покемон</returns>
-        public void IncreaseParameters(int incAtk, int incDef, int incStam)
+        public void IncreaseStats(int incAtk, int incDef, int incStam)
         {
             IncreaseAttack(incAtk);
             IncreaseDefense(incDef);
@@ -162,19 +162,19 @@
         /// Увеличивает атаку покемона
         /// </summary>
         /// <param name="incAtk">Увеличение</param>
-        void IncreaseAttack(int incAtk) => Attack = attack + incAtk;
+        void IncreaseAttack(int incAtk) => Attack += incAtk;
 
         /// <summary>
         /// Увеличивает зашиту покемона
         /// </summary>
         /// <param name="incDef">Увеличение</param>
-        void IncreaseDefense(int incDef) => Defense = defense + incDef;
+        void IncreaseDefense(int incDef) => Defense += incDef;
 
         /// <summary>
         /// Увеличивает выносливость покемона, если возможно
         /// </summary>
         /// <param name="incStam">Увеличение</param>
-        void IncreaseStamina(int incStam) => Stamina = stamina + incStam;
+        void IncreaseStamina(int incStam) => Stamina += incStam;
         #endregion
 
         /// <summary>
@@ -285,5 +285,21 @@
         /// <param name="p">Покемон3</param>
         /// <returns>Покемон с изменённой защитой</returns>
         public static Pokemon operator >(int incDef, Pokemon p) => p > incDef;
+
+        /// <summary>
+        /// Сравнивает на равенство
+        /// </summary>
+        /// <param name="obj">Сравниваемый объект</param>
+        /// <returns>true если объекты равны</returns>
+        public override bool Equals(object? obj)
+        {
+            ArgumentNullException.ThrowIfNull(obj, "Невозможно сравнить значение по null");
+
+            if (obj is Pokemon pokemon)
+                return pokemon.Attack == Attack
+                    && pokemon.Defense == Defense 
+                    && pokemon.Stamina == Stamina;
+            return false;
+        }
     }
 }
