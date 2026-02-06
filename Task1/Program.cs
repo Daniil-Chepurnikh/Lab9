@@ -14,65 +14,17 @@ namespace Task
     {
         static void Main(string[] args)
         {
-            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
-            OutputData.Separetor();
-
-            Pokemon sanya = new(399);
-            OutputData.Message($"{nameof(sanya)} {sanya.Show()}");
-            OutputData.Separetor();
-
-            Pokemon vanya = new();
+            Pokemon vanya = new(111, 111, 111);
+            
+            vanya = --vanya;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
             
-            Pokemon petya = new(99, 99, 99);
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-            
-            Pokemon sidya = new(petya);
-            OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
-            OutputData.Separetor();
-            
-            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
-            OutputData.Separetor();
-            
-            vanya.IncreaseStats(111, 222, 333);
+            vanya >>= 11;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
-            Pokemon.IncreaseStats(petya, 1, 1, 1);
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-
-            try
-            {
-                sidya.IncreaseStats(1000, 222, 333);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-            OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
-            OutputData.Separetor();
-            
-            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
-            OutputData.Separetor();
-            
-            petya = --petya;
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-            
-            sidya >>= 11;
-            OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
-            OutputData.Separetor();
-            
-            OutputData.Message($"Сумма характеристик {nameof(vanya)}: {(int)vanya}\n");
-            
-            double average = vanya;
-            OutputData.Message($"Среднее характеристик {nameof(vanya)}: {average}\n");
-            OutputData.Separetor();
-
-            vanya = vanya > 90;
+            vanya = vanya > 190;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
             
@@ -80,7 +32,7 @@ namespace Task
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
-            vanya = vanya < 90;
+            vanya = vanya < 190;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
@@ -88,47 +40,14 @@ namespace Task
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
-            try
-            {
-                Pokemon oooops = new(null);
-            }
-            catch (ArgumentNullException e)
-            {
-                OutputData.Error(e.Message);
-            }
+            double average = vanya;
+            OutputData.Message($"Сумма характеристик {nameof(vanya)}: {(int)vanya}\n");
+            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
+            OutputData.Message($"Среднее характеристик {nameof(vanya)}: {average}\n");
+            OutputData.Separetor();
 
-            try
-            {
-                Pokemon oooops = new(16, 111, 111);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-
-            try
-            {
-                Pokemon oooops = new(111, 31, 111);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-
-            try
-            {
-                Pokemon oooops = new(111, 111, 0);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-
-            PokemonArray pokemons = new(11);
-            OutputData.Message(ConsoleColor.White, pokemons.Show());
-
-
-
+            //PokemonArray pokemons = new(11);
+            //OutputData.Message(ConsoleColor.White, pokemons.Show());
         }
 
         ///// <summary>
@@ -138,7 +57,7 @@ namespace Task
         ///// <returns></returns>
         //static int FindStaminaMode(PokemonArray collection)
         //{
-        //    //TODO: написать
+          //TODO: написать
         //}
 
     }
