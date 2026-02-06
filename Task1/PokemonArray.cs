@@ -51,6 +51,7 @@
         public PokemonArray()
         {
             pokemons = [];
+            collectionCount++;
         }
 
         /// <summary>
@@ -65,16 +66,22 @@
             {
                 pokemons[p] = new(random.Next(111, 122), random.Next(111, 122), random.Next(111, 122));
             }
+            collectionCount++;
         }
 
         /// <summary>
         /// Копирование
         /// </summary>
-        /// <param name="pokemons">Копируемый массив</param>
-        public PokemonArray(PokemonArray pokemons)
+        /// <param name="source">Копируемый массив</param>
+        public PokemonArray(PokemonArray source)
         {
-            // TODO: Разобраться по материалам как сделать глубокое копирование
-            ArgumentNullException.ThrowIfNull(pokemons, "Невозможно скопировать по null");
+            ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать по null");
+
+            pokemons = new Pokemon[source.Length];
+            for (int p = 0; p < pokemons.Length; p++)
+            {
+                pokemons[p] = new(source[p]);
+            }
         }
 
         /// <summary>
