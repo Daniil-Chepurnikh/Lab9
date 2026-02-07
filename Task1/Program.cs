@@ -66,21 +66,109 @@ namespace Task
                 OutputData.Error(e.Message);
             }
 
-            //PokemonArray pokemons = new(11);
-            //OutputData.Message(ConsoleColor.White, pokemons.Show());
+            PokemonArray pokemons = new(22);
+            MergeSort(pokemons, 0, pokemons.Length - 1);
+            
+            
+            OutputData.Message(ConsoleColor.White, pokemons.Show());
+            var nextMode = FindStaminaMode(pokemons);
+            OutputData.Message($"{nextMode}");
         }
 
-        ///// <summary>
-        ///// Нахдит моду выносливости покемонов
-        ///// </summary>
-        ///// <param name="collection">Массив покемонов для поиска моды</param>
-        ///// <returns></returns>
-        //static int FindStaminaMode(PokemonArray collection)
-        //{
-          //TODO: написать
-        //}
+        /// <summary>
+        /// Нахдит моду выносливости покемонов
+        /// </summary>
+        /// <param name="collection">Массив покемонов для поиска моды</param>
+        /// <returns></returns>
+        static int FindStaminaMode(PokemonArray collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection, "Невозможно искать моду в null");
 
-        // TODO: дополнить демонстрационную программу работой с массивом покемонов
+            MergeSort(collection, 0, collection.Length - 1);
 
+            int mode = -1;
+            var nextMode = collection[0].Stamina;
+            var nextModeCount = 1;
+            var modeCount = -1;
+
+            for (int p = 1; p < collection.Length; p++)
+            {
+                if (nextMode == collection[p].Stamina)
+                {
+                    nextModeCount++;
+                }
+                else
+                {
+                    if (nextModeCount >  modeCount)
+                    {
+                        modeCount = nextModeCount;
+                        mode      = nextMode;
+                    }
+
+                    nextMode      = collection[p].Stamina;
+                    nextModeCount = 1;
+                }
+            }
+
+            if (nextModeCount > modeCount)
+                mode = nextMode;
+            return mode;
+        }
+
+        //TODO: дополнить демонстрационную программу работой с массивом покемонов
+
+
+        /// <summary>
+        /// Сортировка слиянием
+        /// </summary>
+        /// <param name="pokemons">Сортируемый массив</param>
+        /// <param name="left">Левая граница сортируемого массива(не обязательно нуль)</param>
+        /// <param name="right">Правая граница сортируемого массива(не обязательно длина без единицы)</param>
+        private static void MergeSort(PokemonArray pokemons, int left, int right)
+        {
+            if (left < right)
+            {
+                var mid = left + (right - left) / 2;
+                MergeSort(pokemons, left, mid); // сортируем левый подмассив
+                MergeSort(pokemons, mid + 1, right); // сортируем правый подмассив
+                Merge(pokemons, left, mid, right); // сливаем два отсортированных подмассива
+            }
+        }
+
+        /// <summary>
+        /// Сливает отсортированные подмассивы
+        /// </summary>
+        /// <param name="pokemons">Массив в котором были сливаемые подмассивы</param>
+        /// <param name="left">Левая граница(не всегда нуль)</param>
+        /// <param name="mid">Середина массива от лефт до райт</param>
+        /// <param name="right">Правая граница(не всегда настоящая правая)</param>
+        private static void Merge(PokemonArray pokemons, int left, int mid, int right)
+        {
+            var leftCounter = left; // счётчик по левому подмассиву
+            var rightCounter = mid + 1; // счётчик по правому подмассиву
+            Pokemon[] sortedArray = new Pokemon[right - left + 1]; // массив в который будем вписывать элементы в нужном порядке, его длина это буквально сколько между лефт и райт элементов
+            var sortedArrayCounter = 0;
+
+            while (leftCounter <= mid && rightCounter <= right) // чтобы чужим индексом не влезть в не свой подмассив
+            {
+                if (pokemons[leftCounter].Stamina <= pokemons[rightCounter].Stamina)
+                    sortedArray[sortedArrayCounter++] = pokemons[leftCounter++];
+                else
+                    sortedArray[sortedArrayCounter++] = pokemons[rightCounter++];
+            }
+
+            while (leftCounter <= mid) // оставшиеся большие в левом подмассиве вписываем последними
+            {
+                sortedArray[sortedArrayCounter++] = pokemons[leftCounter++];
+            }
+            while (rightCounter <= right) // оставшиеся большие в правом подмассиве вписываем последними
+            {
+                sortedArray[sortedArrayCounter++] = pokemons[rightCounter++];
+            }
+            for (int p = 0; p < sortedArray.Length; p++) // записываем в правильном порядке в нужное место исходного массива(left + p, как раз из-за того что left не всегда будет нулём)
+            {
+                pokemons[left + p] = sortedArray[p];
+            }
+        }
     }
 }
