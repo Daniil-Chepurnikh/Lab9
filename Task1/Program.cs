@@ -46,6 +46,26 @@ namespace Task
             OutputData.Message($"Среднее характеристик {nameof(vanya)}: {average}\n");
             OutputData.Separetor();
 
+            Pokemon petya = new(vanya);
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
+            OutputData.Separetor();
+
+            petya--;
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
+            OutputData.Separetor();
+
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)}, {nameof(average)}", $"Они равны: {petya.Equals(average)}");
+            OutputData.Separetor();
+
+            try
+            {
+                vanya.Equals(null);
+            }
+            catch(ArgumentNullException e)
+            {
+                OutputData.Error(e.Message);
+            }
+
             //PokemonArray pokemons = new(11);
             //OutputData.Message(ConsoleColor.White, pokemons.Show());
         }
