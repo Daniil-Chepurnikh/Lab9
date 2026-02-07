@@ -70,7 +70,7 @@
         }
 
         /// <summary>
-        /// Копирование
+        /// Глубокое копирование
         /// </summary>
         /// <param name="source">Копируемый массив</param>
         public PokemonArray(PokemonArray source)
