@@ -3,7 +3,7 @@
     /// <summary>
     /// Коллекция покемонов
     /// </summary>
-    internal class PokemonArray
+    public class PokemonArray
     {
         Pokemon[] pokemons;
 
