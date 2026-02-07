@@ -64,7 +64,7 @@
 
             for (int p = 0; p < length; p++)
             {
-                pokemons[p] = new(random.Next(111, 122), random.Next(111, 122), random.Next(111, 122));
+                pokemons[p] = new(random.Next(111, 150), random.Next(111, 150), random.Next(111, 150));
             }
             collectionCount++;
         }
