@@ -10,7 +10,7 @@
         /// <summary>
         /// Количество созданных коллекций покемонов
         /// </summary>
-        public static int collectionCount { get; private set; }
+        public static int CollectionCount { get; private set; }
 
         public int Length => pokemons.Length;
 
@@ -38,12 +38,12 @@
         /// <param name="min">Левая граница диапазона(включительно)</param>
         /// <param name="max">Правая граница диапазона(НЕ включительно)</param>
         /// <returns>true если в диапазоне иначе false</returns>
-        bool IsInRange(int index, int min, int max) => index >= min && index < max;
+        static bool IsInRange(int index, int min, int max) => index >= min && index < max;
 
         /// <summary>
         /// Датчик случайных чисел
         /// </summary>
-        static Random random = new();
+        static readonly Random random = new();
 
         /// <summary>
         /// Инициализация по умолчанию
@@ -51,7 +51,7 @@
         public PokemonArray()
         {
             pokemons = [];
-            collectionCount++;
+            CollectionCount++;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@
             {
                 pokemons[p] = new(random.Next(111, 150), random.Next(111, 150), random.Next(111, 150));
             }
-            collectionCount++;
+            CollectionCount++;
         }
 
         /// <summary>

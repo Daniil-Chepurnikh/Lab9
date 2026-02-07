@@ -89,11 +89,11 @@
         /// <param name="atk">Атака</param>
         /// <param name="def">Защита</param>
         /// <param name="stam">Выносливость</param>
-        public Pokemon(int atk, int def, int stam)
+        public Pokemon(int attack, int defense, int stamina)
         {
-            Attack = atk;
-            Defense = def;
-            Stamina = stam;
+            Attack = attack;
+            Defense = defense;
+            Stamina = stamina;
 
             Count++;
         }
