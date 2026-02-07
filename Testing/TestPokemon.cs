@@ -3,7 +3,7 @@
 namespace Testing
 {
     [TestClass]
-    public sealed class Test
+    public sealed class TestPokemon
     {
         #region Boundary Value Testing
         [TestMethod]
@@ -17,7 +17,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMinAttackLess()
+        public void TestCreatePokemonWithMinAttack1()
         {
             string ooops = "";
             try
@@ -33,7 +33,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMinAttackGreater()
+        public void TestCreatePokemonWithMinAttack2()
         {
             Pokemon pokemon = new(Pokemon.MIN_ATK + 1);
 
@@ -41,7 +41,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMinDefenseLess()
+        public void TestCreatePokemonWithMinDefense1()
         {
             string ooops = string.Empty;
             try
@@ -57,7 +57,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMinDefenseGreater()
+        public void TestCreatePokemonWithMinDefense2()
         {
             Pokemon pokemon = new(299, Pokemon.MIN_DEF + 1, 111);
 
@@ -65,7 +65,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMinStaminaLess()
+        public void TestCreatePokemonWithMinStamina1()
         {
             string ooops = string.Empty;
             try
@@ -81,7 +81,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMinStaminaGreater()
+        public void TestCreatePokemonWithMinStamina2()
         {
             Pokemon pokemon = new(299, 299, Pokemon.MIN_STAM + 1);
 
@@ -99,7 +99,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMaxStaminaLess()
+        public void TestCreatePokemonWithMaxStamina1()
         {
             Pokemon pokemon = new(299, 299, Pokemon.MAX_STAM - 1);
 
@@ -107,7 +107,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMaxStaminaGreater()
+        public void TestCreatePokemonWithMaxStamina2()
         {
             char q = '-';
             try
@@ -123,7 +123,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMaxDefenseLess()
+        public void TestCreatePokemonWithMaxDefense1()
         {
             Pokemon pokemon = new(299, Pokemon.MAX_DEF - 1, 299);
 
@@ -131,7 +131,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMaxDefenseGreater()
+        public void TestCreatePokemonWithMaxDefense2()
         {
             char q = '-';
             try
@@ -147,7 +147,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMaxAttackLess()
+        public void TestCreatePokemonWithMaxAttack1()
         {
             Pokemon pokemon = new(Pokemon.MAX_ATK - 1, 111, 299);
 
@@ -155,7 +155,7 @@ namespace Testing
         }
 
         [TestMethod]
-        public void TestCreatePokemonWithMaxAttackGreater()
+        public void TestCreatePokemonWithMaxAttack2()
         {
             char q = '-';
             try
@@ -211,6 +211,10 @@ namespace Testing
             Assert.AreEqual(copy.Attack, pokemon.Attack);
             Assert.AreEqual(copy.Defense, pokemon.Defense);
             Assert.AreEqual(copy.Stamina, pokemon.Stamina);
+
+            copy.IncreaseStats(111,111,111);
+            
+            Assert.AreNotEqual(pokemon.Attack, copy.Attack);
         }
 
         [TestMethod]

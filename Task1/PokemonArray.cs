@@ -3,14 +3,14 @@
     /// <summary>
     /// Коллекция покемонов
     /// </summary>
-    internal class PokemonArray
+    public class PokemonArray
     {
         Pokemon[] pokemons;
 
         /// <summary>
         /// Количество созданных коллекций покемонов
         /// </summary>
-        public static int collectionCount { get; private set; }
+        public static int CollectionCount { get; private set; }
 
         public int Length => pokemons.Length;
 
@@ -38,12 +38,12 @@
         /// <param name="min">Левая граница диапазона(включительно)</param>
         /// <param name="max">Правая граница диапазона(НЕ включительно)</param>
         /// <returns>true если в диапазоне иначе false</returns>
-        bool IsInRange(int index, int min, int max) => index >= min && index < max;
+        static bool IsInRange(int index, int min, int max) => index >= min && index < max;
 
         /// <summary>
         /// Датчик случайных чисел
         /// </summary>
-        static Random random = new();
+        static readonly Random random = new();
 
         /// <summary>
         /// Инициализация по умолчанию
@@ -51,6 +51,7 @@
         public PokemonArray()
         {
             pokemons = [];
+            CollectionCount++;
         }
 
         /// <summary>
@@ -61,20 +62,28 @@
         {
             pokemons = new Pokemon[length];
 
+            // TODO: сделать возможность самостоятельного ввода значений
+
             for (int p = 0; p < length; p++)
             {
-                pokemons[p] = new(random.Next(111, 122), random.Next(111, 122), random.Next(111, 122));
+                pokemons[p] = new(random.Next(111, 150), random.Next(111, 150), random.Next(111, 150));
             }
+            CollectionCount++;
         }
 
         /// <summary>
-        /// Копирование
+        /// Глубокое копирование
         /// </summary>
-        /// <param name="pokemons">Копируемый массив</param>
-        public PokemonArray(PokemonArray pokemons)
+        /// <param name="source">Копируемый массив</param>
+        public PokemonArray(PokemonArray source)
         {
-            // TODO: Разобраться по материалам как сделать глубокое копирование
-            ArgumentNullException.ThrowIfNull(pokemons, "Невозможно скопировать по null");
+            ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать по null");
+
+            pokemons = new Pokemon[source.Length];
+            for (int p = 0; p < pokemons.Length; p++)
+            {
+                pokemons[p] = new(source[p]);
+            }
         }
 
         /// <summary>

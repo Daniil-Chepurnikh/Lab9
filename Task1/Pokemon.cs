@@ -16,11 +16,11 @@
         public const short MAX_STAM = 496;
         #endregion
 
+        public static int Count { get; private set; }
+
         int attack;
         int defense;
         int stamina;
-
-        public static int Count { get; private set; }
 
         /// <summary>
         /// Aтака 
@@ -89,23 +89,23 @@
         /// <param name="atk">Атака</param>
         /// <param name="def">Защита</param>
         /// <param name="stam">Выносливость</param>
-        public Pokemon(int atk, int def, int stam)
+        public Pokemon(int attack, int defense, int stamina)
         {
-            Attack = atk;
-            Defense = def;
-            Stamina = stam;
+            Attack = attack;
+            Defense = defense;
+            Stamina = stamina;
 
             Count++;
         }
 
         /// <summary>
-        /// Копирование
+        /// Глубокое копирование
         /// </summary>
         /// <param name="p">Копируемый экземпляр</param>
         public Pokemon(Pokemon source)
         {
             ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать по null");
-
+            
             Attack = source.attack;
             Defense = source.defense;
             Stamina = source.stamina;
@@ -134,49 +134,50 @@
         /// Увеличивает параметры покемона, если возможно, на переданные значения
         /// </summary>
         /// <param name="p">Изменяемый покемон</param>
-        /// <param name="incAtk">Атака</param>
-        /// <param name="incDef">Защита</param>
-        /// <param name="incStam">Выносливость</param>
+        /// <param name="increaseAttack">Атака</param>
+        /// <param name="increaseDefense">Защита</param>
+        /// <param name="increaseStamina">Выносливость</param>
         /// <returns>Изменённый покемон</returns>
-        public static Pokemon IncreaseStats(Pokemon p, int incAtk, int incDef, int incStam)
+        public static Pokemon IncreaseStats(Pokemon p, int increaseAttack, int increaseDefense, int increaseStamina)
         {
-            p.IncreaseStats(incAtk, incDef, incStam);
+            p.IncreaseStats(increaseAttack, increaseDefense, increaseStamina);
             return p;
         }
 
         /// <summary>
         /// Увеличивает параметры покемона на переданные значения
         /// </summary>
-        /// <param name="incAtk">Атака</param>
-        /// <param name="incDef">Защита</param>
-        /// <param name="incStam">Выносливость</param>
+        /// <param name="increaseAttack">Атака</param>
+        /// <param name="increaseDefense">Защита</param>
+        /// <param name="increaseStamina">Выносливость</param>
         /// <returns>Изменённый покемон</returns>
-        public void IncreaseStats(int incAtk, int incDef, int incStam)
+        public void IncreaseStats(int increaseAttack, int increaseDefense, int increaseStamina)
         {
-            IncreaseAttack(incAtk);
-            IncreaseDefense(incDef);
-            IncreaseStamina(incStam);
+            IncreaseAttack(increaseAttack);
+            IncreaseDefense(increaseDefense);
+            IncreaseStamina(increaseStamina);
         }
 
         /// <summary>
         /// Увеличивает атаку покемона
         /// </summary>
-        /// <param name="incAtk">Увеличение</param>
-        void IncreaseAttack(int incAtk) => Attack += incAtk;
+        /// <param name="increaseAttack">Увеличение</param>
+        void IncreaseAttack(int increaseAttack) => Attack += increaseAttack;
 
         /// <summary>
         /// Увеличивает зашиту покемона
         /// </summary>
-        /// <param name="incDef">Увеличение</param>
-        void IncreaseDefense(int incDef) => Defense += incDef;
+        /// <param name="increaseDefense">Увеличение</param>
+        void IncreaseDefense(int increaseDefense) => Defense += increaseDefense;
 
         /// <summary>
         /// Увеличивает выносливость покемона, если возможно
         /// </summary>
-        /// <param name="incStam">Увеличение</param>
-        void IncreaseStamina(int incStam) => Stamina += incStam;
+        /// <param name="increaseStamina">Увеличение</param>
+        void IncreaseStamina(int increaseStamina) => Stamina += increaseStamina;
         #endregion
 
+        #region Переопределённые операции
         /// <summary>
         /// Считает и возвращает мощность покемона
         /// </summary>
@@ -220,6 +221,18 @@
         int Sum() => Attack + Defense + Stamina;
 
         /// <summary>
+        /// Считает среднее характеристик покемона 
+        /// </summary>
+        /// <param name="p">Покемон</param>
+        public static implicit operator double(Pokemon p) => p.Average(); // implicit - неявное привидение
+
+        /// <summary>
+        /// Считает среднее характеристик покемона 
+        /// </summary>
+        /// <returns></returns>
+        double Average() => Math.Round(Sum() / 3.0, 2);
+
+        /// <summary>
         /// Увеличивает выносливость покемона на определённое число
         /// </summary>
         /// <param name="p">Покемон для увеличения</param>
@@ -233,58 +246,47 @@
         }
 
         /// <summary>
-        /// Считает среднее характеристик покемона 
-        /// </summary>
-        /// <param name="p">Покемон</param>
-        public static implicit operator double(Pokemon p) => p.Average(); // implicit - неявное привидение
-
-        /// <summary>
-        /// Считает среднее характеристик покемона 
-        /// </summary>
-        /// <returns></returns>
-        double Average() => Math.Round(Sum() / 3.0, 2);
-
-        /// <summary>
         /// Увеличивает атаку покемона на заданное число
         /// </summary>
         /// <param name="p">Покемон</param>
-        /// <param name="incAtk">Увеличение</param>
+        /// <param name="increaseAttack">Увеличение</param>
         /// <returns>Покемон с изменённой атакой атакой</returns>
-        public static Pokemon operator <(Pokemon p, int incAtk)
+        public static Pokemon operator <(Pokemon p, int increaseAttack)
         {
             Pokemon pokemon = new(p);
-            pokemon.IncreaseAttack(incAtk);
+            pokemon.IncreaseAttack(increaseAttack);
             return pokemon;
         }
 
         /// <summary>
         /// Увеличивает атаку покемона на заданное число
         /// </summary>
-        /// <param name="incAtk">Увеличение</param>
+        /// <param name="increaseAttack">Увеличение</param>
         /// <param name="p">Покемон</param>
         /// <returns>Покемон с изменённой атакой атакой</returns>
-        public static Pokemon operator <(int incAtk, Pokemon p) => p < incAtk;
+        public static Pokemon operator <(int increaseAttack, Pokemon p) => p < increaseAttack;
 
         /// <summary>
         /// Увеличивает защиту покемона на заданное число
         /// </summary>
         /// <param name="p">Покемон3</param>
-        /// <param name="incDef">Увеличение защиты</param>
+        /// <param name="increaseDefense">Увеличение защиты</param>
         /// <returns>Покемон с изменённой защитой</returns>
-        public static Pokemon operator >(Pokemon p, int incDef)
+        public static Pokemon operator >(Pokemon p, int increaseDefense)
         {
             Pokemon pokemon = new(p);
-            pokemon.IncreaseDefense(incDef);
+            pokemon.IncreaseDefense(increaseDefense);
             return pokemon;
         }
         
         /// <summary>
         /// Увеличивает защиту покемона на заданное число
         /// </summary>
-        /// <param name="incDef">Увеличение защиты</param>
+        /// <param name="increaseDefense">Увеличение защиты</param>
         /// <param name="p">Покемон3</param>
         /// <returns>Покемон с изменённой защитой</returns>
-        public static Pokemon operator >(int incDef, Pokemon p) => p > incDef;
+        public static Pokemon operator >(int increaseDefense, Pokemon p) => p > increaseDefense;
+        #endregion
 
         /// <summary>
         /// Сравнивает на равенство

@@ -14,65 +14,17 @@ namespace Task
     {
         static void Main(string[] args)
         {
-            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
-            OutputData.Separetor();
-
-            Pokemon sanya = new(399);
-            OutputData.Message($"{nameof(sanya)} {sanya.Show()}");
-            OutputData.Separetor();
-
-            Pokemon vanya = new();
+            Pokemon vanya = new(111, 111, 111);
+            
+            vanya = --vanya;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
             
-            Pokemon petya = new(99, 99, 99);
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-            
-            Pokemon sidya = new(petya);
-            OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
-            OutputData.Separetor();
-            
-            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
-            OutputData.Separetor();
-            
-            vanya.IncreaseStats(111, 222, 333);
+            vanya >>= 11;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
-            Pokemon.IncreaseStats(petya, 1, 1, 1);
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-
-            try
-            {
-                sidya.IncreaseStats(1000, 222, 333);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-            OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
-            OutputData.Separetor();
-            
-            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
-            OutputData.Separetor();
-            
-            petya = --petya;
-            OutputData.Message($"{nameof(petya)} {petya.Show()}");
-            OutputData.Separetor();
-            
-            sidya >>= 11;
-            OutputData.Message($"{nameof(sidya)} {sidya.Show()}");
-            OutputData.Separetor();
-            
-            OutputData.Message($"Сумма характеристик {nameof(vanya)}: {(int)vanya}\n");
-            
-            double average = vanya;
-            OutputData.Message($"Среднее характеристик {nameof(vanya)}: {average}\n");
-            OutputData.Separetor();
-
-            vanya = vanya > 90;
+            vanya = vanya > 190;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
             
@@ -80,7 +32,7 @@ namespace Task
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
-            vanya = vanya < 90;
+            vanya = vanya < 190;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
@@ -88,58 +40,135 @@ namespace Task
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
             OutputData.Separetor();
 
+            double average = vanya;
+            OutputData.Message($"Сумма характеристик {nameof(vanya)}: {(int)vanya}\n");
+            OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
+            OutputData.Message($"Среднее характеристик {nameof(vanya)}: {average}\n");
+            OutputData.Separetor();
+
+            Pokemon petya = new(vanya);
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
+            OutputData.Separetor();
+
+            petya--;
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
+            OutputData.Separetor();
+
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)}, {nameof(average)}", $"Они равны: {petya.Equals(average)}");
+            OutputData.Separetor();
+
             try
             {
-                Pokemon oooops = new(null);
+                vanya.Equals(null);
             }
-            catch (ArgumentNullException e)
+            catch(ArgumentNullException e)
             {
                 OutputData.Error(e.Message);
             }
 
-            try
-            {
-                Pokemon oooops = new(16, 111, 111);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-
-            try
-            {
-                Pokemon oooops = new(111, 31, 111);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-
-            try
-            {
-                Pokemon oooops = new(111, 111, 0);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                OutputData.Error(e.Message);
-            }
-
-            PokemonArray pokemons = new(11);
+            PokemonArray pokemons = new(22);
+            MergeSort(pokemons, 0, pokemons.Length - 1);
+            
+            
             OutputData.Message(ConsoleColor.White, pokemons.Show());
-
-
-
+            var nextMode = FindStaminaMode(pokemons);
+            OutputData.Message($"{nextMode}");
         }
 
-        ///// <summary>
-        ///// Нахдит моду выносливости покемонов
-        ///// </summary>
-        ///// <param name="collection">Массив покемонов для поиска моды</param>
-        ///// <returns></returns>
-        //static int FindStaminaMode(PokemonArray collection)
-        //{
-        //    //TODO: написать
-        //}
+        /// <summary>
+        /// Нахдит моду выносливости покемонов
+        /// </summary>
+        /// <param name="collection">Массив покемонов для поиска моды</param>
+        /// <returns></returns>
+        static int FindStaminaMode(PokemonArray collection)
+        {
+            ArgumentNullException.ThrowIfNull(collection, "Невозможно искать моду в null");
 
+            MergeSort(collection, 0, collection.Length - 1);
+
+            int mode = -1;
+            var nextMode = collection[0].Stamina;
+            var nextModeCount = 1;
+            var modeCount = -1;
+
+            for (int p = 1; p < collection.Length; p++)
+            {
+                if (nextMode == collection[p].Stamina)
+                {
+                    nextModeCount++;
+                }
+                else
+                {
+                    if (nextModeCount >  modeCount)
+                    {
+                        modeCount = nextModeCount;
+                        mode      = nextMode;
+                    }
+
+                    nextMode      = collection[p].Stamina;
+                    nextModeCount = 1;
+                }
+            }
+
+            if (nextModeCount > modeCount)
+                mode = nextMode;
+            return mode;
+        }
+
+        //TODO: дополнить демонстрационную программу работой с массивом покемонов
+
+
+        /// <summary>
+        /// Сортировка слиянием
+        /// </summary>
+        /// <param name="pokemons">Сортируемый массив</param>
+        /// <param name="left">Левая граница сортируемого массива(не обязательно нуль)</param>
+        /// <param name="right">Правая граница сортируемого массива(не обязательно длина без единицы)</param>
+        private static void MergeSort(PokemonArray pokemons, int left, int right)
+        {
+            if (left < right)
+            {
+                var mid = left + (right - left) / 2;
+                MergeSort(pokemons, left, mid); // сортируем левый подмассив
+                MergeSort(pokemons, mid + 1, right); // сортируем правый подмассив
+                Merge(pokemons, left, mid, right); // сливаем два отсортированных подмассива
+            }
+        }
+
+        /// <summary>
+        /// Сливает отсортированные подмассивы
+        /// </summary>
+        /// <param name="pokemons">Массив в котором были сливаемые подмассивы</param>
+        /// <param name="left">Левая граница(не всегда нуль)</param>
+        /// <param name="mid">Середина массива от лефт до райт</param>
+        /// <param name="right">Правая граница(не всегда настоящая правая)</param>
+        private static void Merge(PokemonArray pokemons, int left, int mid, int right)
+        {
+            var leftCounter = left; // счётчик по левому подмассиву
+            var rightCounter = mid + 1; // счётчик по правому подмассиву
+            Pokemon[] sortedArray = new Pokemon[right - left + 1]; // массив в который будем вписывать элементы в нужном порядке, его длина это буквально сколько между лефт и райт элементов
+            var sortedArrayCounter = 0;
+
+            while (leftCounter <= mid && rightCounter <= right) // чтобы чужим индексом не влезть в не свой подмассив
+            {
+                if (pokemons[leftCounter].Stamina <= pokemons[rightCounter].Stamina)
+                    sortedArray[sortedArrayCounter++] = pokemons[leftCounter++];
+                else
+                    sortedArray[sortedArrayCounter++] = pokemons[rightCounter++];
+            }
+
+            while (leftCounter <= mid) // оставшиеся большие в левом подмассиве вписываем последними
+            {
+                sortedArray[sortedArrayCounter++] = pokemons[leftCounter++];
+            }
+            while (rightCounter <= right) // оставшиеся большие в правом подмассиве вписываем последними
+            {
+                sortedArray[sortedArrayCounter++] = pokemons[rightCounter++];
+            }
+            for (int p = 0; p < sortedArray.Length; p++) // записываем в правильном порядке в нужное место исходного массива(left + p, как раз из-за того что left не всегда будет нулём)
+            {
+                pokemons[left + p] = sortedArray[p];
+            }
+        }
     }
 }
