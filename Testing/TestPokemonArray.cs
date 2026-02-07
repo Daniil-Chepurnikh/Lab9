@@ -9,8 +9,41 @@ namespace Testing;
 public class TestPokemonArray
 {
     [TestMethod]
-    public void TestMethod1()
+    public void TestCratePokemonArrayWithoutParameters()
     {
+        PokemonArray pokemons = new();
 
+        Assert.AreEqual(0, pokemons.Length);
     }
+
+    [TestMethod]
+    public void TestCopyNull()
+    {
+        bool isPassed = false;
+        try
+        {
+            PokemonArray pokemons = new(null);
+        }
+        catch(ArgumentNullException)
+        { 
+            isPassed = true;
+        }
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void TestCopyCorrect()
+    {
+        PokemonArray pokemons = new(1);
+        PokemonArray pikachus = new(pokemons);
+
+        Assert.AreEqual(pikachus[0].Attack, pokemons[0].Attack);
+        Assert.AreEqual(pikachus[0].Defense, pokemons[0].Defense);
+        Assert.AreEqual(pikachus[0].Stamina, pokemons[0].Stamina);
+
+        pokemons[0]--;
+
+        Assert.AreNotEqual(pikachus[0].Stamina, pokemons[0].Stamina);
+    }
+
 }
