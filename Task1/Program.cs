@@ -1,9 +1,4 @@
-﻿// GoodPractice: ОТДЕЛЬНЫЙ КЛАСС - ОТДЕЛЬНЫЙ ФАЙЛ
-// GoodPractice: Не пиши лишних/очевидных вещей
-// GoodPractice: ровный вывод в консоль $"{значение, ширина}"
-// GoodPractice: Ровные столбики в программном коде
-
-using System;
+﻿using System;
 
 namespace Task
 {
@@ -216,6 +211,11 @@ namespace Task
             }
         }
 
+        /// <summary>
+        /// Заполняет массив покемонов вручную
+        /// </summary>
+        /// <param name="pokemons">Заполняемый массив</param>
+        /// <returns>Заполненный массив</returns>
         static PokemonArray MakePokemonArray(PokemonArray pokemons)
         {
             ArgumentNullException.ThrowIfNull(pokemons);
@@ -228,6 +228,5 @@ namespace Task
             }
             return pokemons;
         }
-
     }
 }
