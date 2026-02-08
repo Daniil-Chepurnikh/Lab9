@@ -5,7 +5,7 @@ namespace Task
     /// <summary>
     /// Обратная связь пользователю
     /// </summary>
-    internal static class OutputData
+    public static class OutputData
     {
         /// <summary>
         /// Печатает ошибки
@@ -39,8 +39,6 @@ namespace Task
             }
             Console.ResetColor();
         }
-
-
 
         /// <summary>
         /// Печатает разделители

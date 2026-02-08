@@ -2,14 +2,12 @@ using Task;
 
 namespace Testing;
 
-// написать тесты массива покемонов
-
-
 [TestClass]
 public class TestPokemonArray
 {
+    #region “естирование конструкторов
     [TestMethod]
-    public void TestCratePokemonArrayWithoutParameters()
+    public void TestCratePokemonArrayWithoutParameter()
     {
         PokemonArray pokemons = new();
 
@@ -46,4 +44,169 @@ public class TestPokemonArray
         Assert.AreNotEqual(pikachus[0].Stamina, pokemons[0].Stamina);
     }
 
+    [TestMethod]
+    public void TestCratePokemonArrayWithParameter()
+    {
+        PokemonArray pokemons = new(11);
+
+        Assert.AreEqual(11, pokemons.Length);
+    }
+    #endregion
+
+    #region “естирование индексатора
+    [TestMethod]
+    public void WriteIndexOutOfRange1()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+            pokemons[4] = new();
+        }
+        catch(IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void WriteIndexOutOfRange2()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+            pokemons[-1] = new();
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadIndexOutOfRange1()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+           OutputData.Message(pokemons[4].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadIndexOutOfRange2()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+            OutputData.Message(pokemons[-1].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void WriteCorrect1()
+    {
+        PokemonArray pokemons = new(4);
+        
+        pokemons[3] = new(111, 100, 99);
+
+        Assert.AreEqual(111, pokemons[3].Attack);
+        Assert.AreEqual(100, pokemons[3].Defense);
+        Assert.AreEqual(99, pokemons[3].Stamina);
+    }
+
+    [TestMethod]
+    public void WriteCorrect2()
+    {
+        PokemonArray pokemons = new(4);
+
+        pokemons[0] = new(111, 100, 99);
+
+        Assert.AreEqual(111, pokemons[0].Attack);
+        Assert.AreEqual(100, pokemons[0].Defense);
+        Assert.AreEqual(99, pokemons[0].Stamina);
+    }
+
+    [TestMethod]
+    public void WriteCorrect3()
+    {
+        PokemonArray pokemons = new(4);
+
+        pokemons[1] = new(111, 100, 99);
+
+        Assert.AreEqual(111, pokemons[1].Attack);
+        Assert.AreEqual(100, pokemons[1].Defense);
+        Assert.AreEqual(99, pokemons[1].Stamina);
+    }
+
+    [TestMethod]
+    public void ReadCorrect1()
+    {
+        PokemonArray pokemons = new(4);
+        bool isPassed = true;
+        try
+        {
+            OutputData.Message(pokemons[3].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = false;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadCorrect2()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = true;
+        try
+        {
+            OutputData.Message(pokemons[0].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = false;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadCorrect3()
+    {
+        PokemonArray pokemons = new(4);
+        bool isPassed = true;
+        try
+        {
+            OutputData.Message(pokemons[2].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = false;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+    #endregion
 }

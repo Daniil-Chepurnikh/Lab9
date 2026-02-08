@@ -1,9 +1,4 @@
-﻿// GoodPractice: ОТДЕЛЬНЫЙ КЛАСС - ОТДЕЛЬНЫЙ ФАЙЛ
-// GoodPractice: Не пиши лишних/очевидных вещей
-// GoodPractice: ровный вывод в консоль $"{значение, ширина}"
-// GoodPractice: Ровные столбики в программном коде
-
-using System;
+﻿using System;
 
 namespace Task
 {
@@ -65,14 +60,62 @@ namespace Task
             {
                 OutputData.Error(e.Message);
             }
-
-            PokemonArray pokemons = new(22);
-            MergeSort(pokemons, 0, pokemons.Length - 1);
             
-            
+            PokemonArray pokemons = new(11);
             OutputData.Message(ConsoleColor.White, pokemons.Show());
+            
             var nextMode = FindStaminaMode(pokemons);
-            OutputData.Message($"{nextMode}");
+            OutputData.Message($"{nextMode}\n");
+
+            PokemonArray empty = new();
+            try
+            {
+                empty[0] = new(111, 111, 111);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
+
+            try
+            {
+                OutputData.Message(empty[0].Show());
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
+
+            PokemonArray copyPokemons = new(pokemons);
+            OutputData.Message(ConsoleColor.Yellow, copyPokemons.Show());
+
+            copyPokemons[10] = new(200, 222, 111);
+
+            OutputData.Message(ConsoleColor.Magenta,  copyPokemons.Show());
+            OutputData.Separetor();
+
+            OutputData.Message(ConsoleColor.Green, pokemons.Show());
+            OutputData.Separetor();
+
+            OutputData.Message(pokemons[0].Show());
+            OutputData.Separetor();
+
+            PokemonArray packmans = new(4);
+            OutputData.Message(ConsoleColor.Blue, packmans.Show());
+
+            try
+            {
+                packmans = MakePokemonArray(packmans);
+                OutputData.Message(ConsoleColor.Blue, packmans.Show());
+            }
+            catch (ArgumentNullException e)
+            {
+                OutputData.Error(e.Message); 
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
         }
 
         /// <summary>
@@ -115,16 +158,13 @@ namespace Task
             return mode;
         }
 
-        //TODO: дополнить демонстрационную программу работой с массивом покемонов
-
-
         /// <summary>
         /// Сортировка слиянием
         /// </summary>
         /// <param name="pokemons">Сортируемый массив</param>
         /// <param name="left">Левая граница сортируемого массива(не обязательно нуль)</param>
         /// <param name="right">Правая граница сортируемого массива(не обязательно длина без единицы)</param>
-        private static void MergeSort(PokemonArray pokemons, int left, int right)
+        static void MergeSort(PokemonArray pokemons, int left, int right)
         {
             if (left < right)
             {
@@ -142,7 +182,7 @@ namespace Task
         /// <param name="left">Левая граница(не всегда нуль)</param>
         /// <param name="mid">Середина массива от лефт до райт</param>
         /// <param name="right">Правая граница(не всегда настоящая правая)</param>
-        private static void Merge(PokemonArray pokemons, int left, int mid, int right)
+        static void Merge(PokemonArray pokemons, int left, int mid, int right)
         {
             var leftCounter = left; // счётчик по левому подмассиву
             var rightCounter = mid + 1; // счётчик по правому подмассиву
@@ -169,6 +209,24 @@ namespace Task
             {
                 pokemons[left + p] = sortedArray[p];
             }
+        }
+
+        /// <summary>
+        /// Заполняет массив покемонов вручную
+        /// </summary>
+        /// <param name="pokemons">Заполняемый массив</param>
+        /// <returns>Заполненный массив</returns>
+        static PokemonArray MakePokemonArray(PokemonArray pokemons)
+        {
+            ArgumentNullException.ThrowIfNull(pokemons);
+            
+            for (int p = 0; p < pokemons.Length; p++)
+            {
+                pokemons[p].Attack  = InputData.IntNumber("Введите атаку покемона: ", InputData.RANGE_ERROR);
+                pokemons[p].Defense = InputData.IntNumber("Введите защиту покемона: ", InputData.RANGE_ERROR);
+                pokemons[p].Stamina = InputData.IntNumber("Введите выносливость покемона: ", InputData.RANGE_ERROR);
+            }
+            return pokemons;
         }
     }
 }
