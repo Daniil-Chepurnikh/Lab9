@@ -5,7 +5,7 @@ namespace Task
     /// <summary>
     /// Обратная связь пользователю
     /// </summary>
-    static internal class OutputData
+    public static class OutputData
     {
         /// <summary>
         /// Печатает ошибки
