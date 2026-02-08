@@ -19,17 +19,17 @@ namespace Testing
         [TestMethod]
         public void TestCreatePokemonWithMinAttack1()
         {
-            string ooops = "";
+            bool isPassed = false;
             try
             {
                 Pokemon pokemon = new(Pokemon.MIN_ATK - 1);
             }
             catch (ArgumentOutOfRangeException)
             {
-                ooops = "Слишком маленькая атака";
+                isPassed = true;
             }
 
-            Assert.AreEqual("Слишком маленькая атака", ooops);
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
@@ -43,17 +43,17 @@ namespace Testing
         [TestMethod]
         public void TestCreatePokemonWithMinDefense1()
         {
-            string ooops = string.Empty;
+            bool isPassed = false;
             try
             {
                 Pokemon pokemon = new(299, Pokemon.MIN_DEF - 1, 111);
             }
             catch (ArgumentOutOfRangeException)
             {
-                ooops = "Слишком малая защита";
+                isPassed = true;
             }
 
-            Assert.AreEqual("Слишком малая защита", ooops);
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
@@ -67,17 +67,17 @@ namespace Testing
         [TestMethod]
         public void TestCreatePokemonWithMinStamina1()
         {
-            string ooops = string.Empty;
+            bool isPassed = false;
             try
             {
                 Pokemon pokemon = new(299, 299, Pokemon.MIN_STAM - 1);
             }
             catch (ArgumentOutOfRangeException)
             {
-                ooops = "Слишком малая выносливость";
+                isPassed = true;
             }
 
-            Assert.AreEqual("Слишком малая выносливость", ooops);
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
@@ -109,17 +109,17 @@ namespace Testing
         [TestMethod]
         public void TestCreatePokemonWithMaxStamina2()
         {
-            char q = '-';
+            bool isPassed = false;
             try
             {
                 Pokemon pokemon = new(299, 299, Pokemon.MAX_STAM + 1);
             }
             catch (ArgumentOutOfRangeException)
             {
-                q = '+';
+                isPassed = true;
             }
             
-            Assert.AreEqual('+', q);
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
@@ -133,17 +133,17 @@ namespace Testing
         [TestMethod]
         public void TestCreatePokemonWithMaxDefense2()
         {
-            char q = '-';
+            bool isPassed = false;
             try
             {
                 Pokemon pokemon = new(299, Pokemon.MAX_DEF + 1, 299);
             }
             catch (ArgumentOutOfRangeException)
             {
-                q = '+';
+               isPassed = true;
             }
 
-            Assert.AreEqual('+', q);
+            Assert.IsTrue(isPassed);
         }
 
         [TestMethod]
@@ -157,21 +157,21 @@ namespace Testing
         [TestMethod]
         public void TestCreatePokemonWithMaxAttack2()
         {
-            char q = '-';
+            bool isPassed = false;
             try
             {
                 Pokemon pokemon = new(Pokemon.MAX_ATK + 1, 111, 299);
             }
             catch (ArgumentOutOfRangeException)
             {
-                q = '+';
+                isPassed = true;
             }
 
-            Assert.AreEqual('+', q);
+            Assert.IsTrue(isPassed);
         }
         #endregion
 
-        #region Тестирование Конструкторов
+        #region Тестирование конструкторов
         [TestMethod]
         public void TestCreatePokemonWithAttackOnly()
         {
@@ -215,21 +215,23 @@ namespace Testing
             copy.IncreaseStats(111,111,111);
             
             Assert.AreNotEqual(pokemon.Attack, copy.Attack);
+            Assert.AreNotEqual(pokemon.Defense, copy.Defense);
+            Assert.AreNotEqual(pokemon.Stamina, copy.Stamina);
         }
 
         [TestMethod]
         public void TestCopyNull()
         {
-            char q = '+';
+            bool isPassed = false;
             try
             {
                 Pokemon copy = new(null);
             }
             catch (ArgumentNullException)
             {
-                q = '-';
+                isPassed = true;
             }
-            Assert.AreEqual('-', q);
+            Assert.IsTrue(isPassed);
         }
         #endregion
 
@@ -420,7 +422,7 @@ namespace Testing
         {
             Pokemon p = new(111, 111, 111);
 
-            var isPassed = false;
+            bool isPassed = false;
             try
             {
                 p.IncreaseStats(1111, -66, -110);
@@ -438,7 +440,7 @@ namespace Testing
         {
             Pokemon p = new(111, 111, 111);
 
-            var isPassed = false;
+            bool isPassed = false;
             try
             {
                 p.IncreaseStats(-1111, -66, -110);
@@ -454,7 +456,7 @@ namespace Testing
         [TestMethod]
         public void TestEquals1()
         {
-            Pokemon p       = new(111, 222, 333);
+            Pokemon p = new(111, 222, 333);
             Pokemon pokemon = new(111, 111, 111);
 
             var result = pokemon.Equals(p);
@@ -476,8 +478,8 @@ namespace Testing
         [TestMethod]
         public void TestEquals3()
         {
-            Pokemon p       = new(111, 222, 333);
-            bool isPassed   = false;
+            Pokemon p = new(111, 222, 333);
+            bool isPassed = false;
             try
             {
                 var result = p.Equals(null);
@@ -493,7 +495,7 @@ namespace Testing
         [TestMethod]
         public void TestEquals4()
         {
-            Pokemon p     = new(111, 222, 333);
+            Pokemon p = new(111, 222, 333);
             object  ooops = 1;
 
             var result = p.Equals(ooops);
