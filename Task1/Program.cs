@@ -66,13 +66,46 @@ namespace Task
                 OutputData.Error(e.Message);
             }
 
-            PokemonArray pokemons = new(22);
-            MergeSort(pokemons, 0, pokemons.Length - 1);
-            
-            
+            PokemonArray pokemons = new(11);
             OutputData.Message(ConsoleColor.White, pokemons.Show());
+            
             var nextMode = FindStaminaMode(pokemons);
-            OutputData.Message($"{nextMode}");
+            OutputData.Message($"{nextMode}\n");
+
+            //TODO: дополнить демонстрационную программу работой с массивом покемонов
+
+            PokemonArray empty = new();
+            try
+            {
+                empty[0] = new(111, 111, 111);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
+
+            try
+            {
+                OutputData.Message(empty[0].Show());
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
+
+            PokemonArray copyPokemons = new(pokemons);
+            OutputData.Message(ConsoleColor.Yellow, copyPokemons.Show());
+
+            copyPokemons[10] = new(200, 222, 111);
+
+            OutputData.Message(ConsoleColor.Magenta,  copyPokemons.Show());
+            OutputData.Separetor();
+
+            OutputData.Message(ConsoleColor.Green, pokemons.Show());
+            OutputData.Separetor();
+
+            OutputData.Message(pokemons[0].Show());
+            OutputData.Separetor();
         }
 
         /// <summary>
@@ -114,9 +147,6 @@ namespace Task
                 mode = nextMode;
             return mode;
         }
-
-        //TODO: дополнить демонстрационную программу работой с массивом покемонов
-
 
         /// <summary>
         /// Сортировка слиянием
