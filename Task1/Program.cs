@@ -65,7 +65,7 @@ namespace Task
             {
                 OutputData.Error(e.Message);
             }
-
+            
             PokemonArray pokemons = new(11);
             OutputData.Message(ConsoleColor.White, pokemons.Show());
             
@@ -105,8 +105,22 @@ namespace Task
             OutputData.Message(pokemons[0].Show());
             OutputData.Separetor();
 
-            //TODO: дополнить демонстрационную программу созданием массива покемонов вручную
+            PokemonArray packmans = new(4);
+            OutputData.Message(ConsoleColor.Blue, packmans.Show());
 
+            try
+            {
+                packmans = MakePokemonArray(packmans);
+                OutputData.Message(ConsoleColor.Blue, packmans.Show());
+            }
+            catch (ArgumentNullException e)
+            {
+                OutputData.Error(e.Message); 
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                OutputData.Error(e.Message);
+            }
         }
 
         /// <summary>
@@ -155,7 +169,7 @@ namespace Task
         /// <param name="pokemons">Сортируемый массив</param>
         /// <param name="left">Левая граница сортируемого массива(не обязательно нуль)</param>
         /// <param name="right">Правая граница сортируемого массива(не обязательно длина без единицы)</param>
-        private static void MergeSort(PokemonArray pokemons, int left, int right)
+        static void MergeSort(PokemonArray pokemons, int left, int right)
         {
             if (left < right)
             {
@@ -173,7 +187,7 @@ namespace Task
         /// <param name="left">Левая граница(не всегда нуль)</param>
         /// <param name="mid">Середина массива от лефт до райт</param>
         /// <param name="right">Правая граница(не всегда настоящая правая)</param>
-        private static void Merge(PokemonArray pokemons, int left, int mid, int right)
+        static void Merge(PokemonArray pokemons, int left, int mid, int right)
         {
             var leftCounter = left; // счётчик по левому подмассиву
             var rightCounter = mid + 1; // счётчик по правому подмассиву
@@ -201,5 +215,19 @@ namespace Task
                 pokemons[left + p] = sortedArray[p];
             }
         }
+
+        static PokemonArray MakePokemonArray(PokemonArray pokemons)
+        {
+            ArgumentNullException.ThrowIfNull(pokemons);
+            
+            for (int p = 0; p < pokemons.Length; p++)
+            {
+                pokemons[p].Attack  = InputData.IntNumber("Введите атаку покемона: ", InputData.RANGE_ERROR);
+                pokemons[p].Defense = InputData.IntNumber("Введите защиту покемона: ", InputData.RANGE_ERROR);
+                pokemons[p].Stamina = InputData.IntNumber("Введите выносливость покемона: ", InputData.RANGE_ERROR);
+            }
+            return pokemons;
+        }
+
     }
 }
