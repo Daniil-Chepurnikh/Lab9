@@ -2,13 +2,14 @@ using Task;
 
 namespace Testing;
 
-// написать тесты массива покемонов
+// TODO: написать тесты массива покемонов
 
 [TestClass]
 public class TestPokemonArray
 {
+    #region Тестирование конструкторов
     [TestMethod]
-    public void TestCratePokemonArrayWithoutParameters()
+    public void TestCratePokemonArrayWithoutParameter()
     {
         PokemonArray pokemons = new();
 
@@ -44,6 +45,15 @@ public class TestPokemonArray
 
         Assert.AreNotEqual(pikachus[0].Stamina, pokemons[0].Stamina);
     }
+
+    [TestMethod]
+    public void TestCratePokemonArrayWithParameter()
+    {
+        PokemonArray pokemons = new(11);
+
+        Assert.AreEqual(11, pokemons.Length);
+    }
+    #endregion
 
     #region Тестирование индексатора
     [TestMethod]
