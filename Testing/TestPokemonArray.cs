@@ -4,7 +4,6 @@ namespace Testing;
 
 // написать тесты массива покемонов
 
-
 [TestClass]
 public class TestPokemonArray
 {
@@ -45,5 +44,80 @@ public class TestPokemonArray
 
         Assert.AreNotEqual(pikachus[0].Stamina, pokemons[0].Stamina);
     }
+
+    #region Тестирование индексатора
+    [TestMethod]
+    public void WriteIndexOutOfRange1()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+            pokemons[4] = new();
+        }
+        catch(IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void WriteIndexOutOfRange2()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+            pokemons[-1] = new();
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadIndexOutOfRange1()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+           OutputData.Message(pokemons[4].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadIndexOutOfRange2()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = false;
+        try
+        {
+            OutputData.Message(pokemons[-1].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = true;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+
+
+
+
+    #endregion
 
 }
