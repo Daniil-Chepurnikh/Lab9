@@ -159,7 +159,5 @@ public class TestPokemonArray
         Assert.AreEqual(100, pokemons[1].Defense);
         Assert.AreEqual(99, pokemons[1].Stamina);
     }
-
     #endregion
-
 }
