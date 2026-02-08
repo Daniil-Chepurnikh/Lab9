@@ -113,6 +113,43 @@ public class TestPokemonArray
 
         Assert.IsTrue(isPassed);
     }
+
+    [TestMethod]
+    public void WriteCorrect1()
+    {
+        PokemonArray pokemons = new(4);
+        
+        pokemons[3] = new(111, 100, 99);
+
+        Assert.AreEqual(111, pokemons[3].Attack);
+        Assert.AreEqual(100, pokemons[3].Defense);
+        Assert.AreEqual(99, pokemons[3].Stamina);
+    }
+
+    [TestMethod]
+    public void WriteCorrect2()
+    {
+        PokemonArray pokemons = new(4);
+
+        pokemons[0] = new(111, 100, 99);
+
+        Assert.AreEqual(111, pokemons[0].Attack);
+        Assert.AreEqual(100, pokemons[0].Defense);
+        Assert.AreEqual(99, pokemons[0].Stamina);
+    }
+
+    [TestMethod]
+    public void WriteCorrect3()
+    {
+        PokemonArray pokemons = new(4);
+
+        pokemons[1] = new(111, 100, 99);
+
+        Assert.AreEqual(111, pokemons[1].Attack);
+        Assert.AreEqual(100, pokemons[1].Defense);
+        Assert.AreEqual(99, pokemons[1].Stamina);
+    }
+
     #endregion
 
 }
