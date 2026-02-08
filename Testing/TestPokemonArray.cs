@@ -2,8 +2,6 @@ using Task;
 
 namespace Testing;
 
-// TODO: написать тесты массива покемонов
-
 [TestClass]
 public class TestPokemonArray
 {
@@ -159,5 +157,57 @@ public class TestPokemonArray
         Assert.AreEqual(100, pokemons[1].Defense);
         Assert.AreEqual(99, pokemons[1].Stamina);
     }
+
+    [TestMethod]
+    public void ReadCorrect1()
+    {
+        PokemonArray pokemons = new(4);
+        bool isPassed = true;
+        try
+        {
+            OutputData.Message(pokemons[3].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = false;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadCorrect2()
+    {
+        PokemonArray pokemons = new(3);
+        bool isPassed = true;
+        try
+        {
+            OutputData.Message(pokemons[0].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = false;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
+    [TestMethod]
+    public void ReadCorrect3()
+    {
+        PokemonArray pokemons = new(4);
+        bool isPassed = true;
+        try
+        {
+            OutputData.Message(pokemons[2].Show());
+        }
+        catch (IndexOutOfRangeException)
+        {
+            isPassed = false;
+        }
+
+        Assert.IsTrue(isPassed);
+    }
+
     #endregion
 }
