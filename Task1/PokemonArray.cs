@@ -18,13 +18,13 @@
         {
             get 
             {  
-                if (IsInRange(index, 0, Length))
+                if (IsInRange(index, 0, Length - 1))
                     return pokemons[index];
                 throw new IndexOutOfRangeException("Чтение по несуществующему индексу");
             }
             set
             {
-                if (IsInRange(index, 0, Length))
+                if (IsInRange(index, 0, Length - 1))
                     pokemons[index] = value;
                 else
                     throw new IndexOutOfRangeException("Запись по несуществующему индексу");
@@ -38,7 +38,7 @@
         /// <param name="min">Левая граница диапазона(включительно)</param>
         /// <param name="max">Правая граница диапазона(НЕ включительно)</param>
         /// <returns>true если в диапазоне иначе false</returns>
-        static bool IsInRange(int index, int min, int max) => index >= min && index < max;
+        static bool IsInRange(int index, int min, int max) => index >= min && index <= max;
 
         /// <summary>
         /// Датчик случайных чисел
