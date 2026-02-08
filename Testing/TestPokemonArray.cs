@@ -208,6 +208,5 @@ public class TestPokemonArray
 
         Assert.IsTrue(isPassed);
     }
-
     #endregion
 }
