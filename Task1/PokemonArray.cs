@@ -61,13 +61,11 @@
         public PokemonArray(int length)
         {
             pokemons = new Pokemon[length];
-
-            // TODO: сделать возможность самостоятельного ввода значений
-
             for (int p = 0; p < length; p++)
             {
                 pokemons[p] = new(random.Next(111, 150), random.Next(111, 150), random.Next(111, 150));
             }
+            
             CollectionCount++;
         }
 
