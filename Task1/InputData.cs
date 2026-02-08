@@ -6,10 +6,9 @@ namespace Task
     {
         public const string RANGE_ERROR = "Не введено число в разрешённом диапазоне";
 
-
         public static int IntNumber(string message, string error)
         {
-            bool isCorrect = false;
+            bool isCorrect;
             int number;
             do
             {
@@ -18,6 +17,7 @@ namespace Task
 
                 if (!isCorrect)
                     OutputData.Error(error);
+
             } while (!isCorrect);
             return number;
         }
