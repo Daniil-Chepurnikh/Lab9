@@ -20,14 +20,14 @@
             {  
                 if (IsInRange(index, 0, Length))
                     return pokemons[index];
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new ArgumentOutOfRangeException("Индекс не существует в массиве");
             }
             set
             {
                 if (IsInRange(index, 0, Length))
                     pokemons[index] = value;
                 else
-                    throw new ArgumentOutOfRangeException(nameof(index));
+                    throw new ArgumentOutOfRangeException("Индекс не существует в массиве");
             }
         }
 
