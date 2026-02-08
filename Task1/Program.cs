@@ -72,14 +72,12 @@ namespace Task
             var nextMode = FindStaminaMode(pokemons);
             OutputData.Message($"{nextMode}\n");
 
-            //TODO: дополнить демонстрационную программу работой с массивом покемонов
-
             PokemonArray empty = new();
             try
             {
                 empty[0] = new(111, 111, 111);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (IndexOutOfRangeException e)
             {
                 OutputData.Error(e.Message);
             }
@@ -88,7 +86,7 @@ namespace Task
             {
                 OutputData.Message(empty[0].Show());
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (IndexOutOfRangeException e)
             {
                 OutputData.Error(e.Message);
             }
@@ -106,6 +104,9 @@ namespace Task
 
             OutputData.Message(pokemons[0].Show());
             OutputData.Separetor();
+
+            //TODO: дополнить демонстрационную программу созданием массива покемонов вручную
+
         }
 
         /// <summary>
