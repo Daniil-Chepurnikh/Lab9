@@ -100,7 +100,7 @@ namespace Task
             OutputData.Message(pokemons[0].Show());
             OutputData.Separator();
 
-            PokemonArray packmans = new(4);
+            PokemonArray packmans = new(7);
             OutputData.Message(ConsoleColor.Blue, packmans.Show());
 
             try
@@ -145,10 +145,10 @@ namespace Task
                     if (nextModeCount >  modeCount)
                     {
                         modeCount = nextModeCount;
-                        mode      = nextMode;
+                        mode = nextMode;
                     }
 
-                    nextMode      = collection[p].Stamina;
+                    nextMode = collection[p].Stamina;
                     nextModeCount = 1;
                 }
             }
@@ -222,7 +222,7 @@ namespace Task
             
             for (int p = 0; p < pokemons.Length; p++)
             {
-                pokemons[p].Attack  = InputData.IntNumber("Введите атаку покемона: ", InputData.RANGE_ERROR);
+                pokemons[p].Attack = InputData.IntNumber("Введите атаку покемона: ", InputData.RANGE_ERROR);
                 pokemons[p].Defense = InputData.IntNumber("Введите защиту покемона: ", InputData.RANGE_ERROR);
                 pokemons[p].Stamina = InputData.IntNumber("Введите выносливость покемона: ", InputData.RANGE_ERROR);
             }

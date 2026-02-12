@@ -76,7 +76,7 @@
         /// </summary>
         public Pokemon()
         {
-            Attack  = MIN_ATK;
+            Attack = MIN_ATK;
             Defense = MIN_DEF;
             Stamina = MIN_STAM;
 
