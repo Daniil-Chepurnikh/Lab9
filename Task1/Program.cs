@@ -13,44 +13,44 @@ namespace Task
             
             vanya = --vanya;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
+            OutputData.Separator();
             
             vanya >>= 11;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             vanya = vanya > 190;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
+            OutputData.Separator();
             
             vanya = -90 > vanya;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             vanya = vanya < 190;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             vanya = -90 < vanya;
             OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             double average = vanya;
             OutputData.Message($"Сумма характеристик {nameof(vanya)}: {(int)vanya}\n");
             OutputData.Message($"Мощность {nameof(vanya)}: {~vanya}\n");
             OutputData.Message($"Среднее характеристик {nameof(vanya)}: {average}\n");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             Pokemon petya = new(vanya);
             OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             petya--;
             OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)}, {nameof(average)}", $"Они равны: {petya.Equals(average)}");
-            OutputData.Separetor();
+            OutputData.Separator();
 
             try
             {
@@ -92,13 +92,13 @@ namespace Task
             copyPokemons[10] = new(200, 222, 111);
 
             OutputData.Message(ConsoleColor.Magenta,  copyPokemons.Show());
-            OutputData.Separetor();
+            OutputData.Separator();
 
             OutputData.Message(ConsoleColor.Green, pokemons.Show());
-            OutputData.Separetor();
+            OutputData.Separator();
 
             OutputData.Message(pokemons[0].Show());
-            OutputData.Separetor();
+            OutputData.Separator();
 
             PokemonArray packmans = new(4);
             OutputData.Message(ConsoleColor.Blue, packmans.Show());

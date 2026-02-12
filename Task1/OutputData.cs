@@ -43,6 +43,6 @@ namespace Task
         /// <summary>
         /// Печатает разделители
         /// </summary>
-        public static void Separetor() => Message("<===><=====><========><============>\n\n", ConsoleColor.DarkGreen);
+        public static void Separator() => Message("<===><=====><========><============>\n\n", ConsoleColor.DarkGreen);
     }
 }
