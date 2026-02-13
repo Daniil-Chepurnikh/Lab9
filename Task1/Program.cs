@@ -229,7 +229,7 @@ namespace Task
         /// </summary>
         /// <param name="pokemons">Заполняемый массив</param>
         /// <returns>Заполненный массив</returns>
-        static PokemonArray MakePokemonArray(PokemonArray pokemons)
+        static PokemonArray MakePokemonArray(PokemonArray pokemons) // попробоавать сделать соответствующий конструктор через разбиение на конструктор с рандом и без
         {
             ArgumentNullException.ThrowIfNull(pokemons);
             
