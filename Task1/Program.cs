@@ -64,8 +64,8 @@ namespace Task
             PokemonArray pokemons = new(11);
             OutputData.Message(ConsoleColor.White, pokemons.Show());
             
-            var nextMode = FindStaminaMode(pokemons);
-            OutputData.Message($"{nextMode}\n");
+            var mode = FindStaminaMode(pokemons);
+            OutputData.Message($"{mode}\n");
 
             PokemonArray empty = new();
             try
@@ -100,22 +100,32 @@ namespace Task
             OutputData.Message(pokemons[0].Show());
             OutputData.Separator();
 
-            PokemonArray packmans = new(7);
+            PokemonArray packmans = new(5);
             OutputData.Message(ConsoleColor.Blue, packmans.Show());
 
             try
             {
-                packmans = MakePokemonArray(packmans);
-                OutputData.Message(ConsoleColor.Blue, packmans.Show());
+                PokemonArray array = MakePokemonArray(null);
+                OutputData.Message(ConsoleColor.Blue, array.Show());
             }
             catch (ArgumentNullException e)
             {
                 OutputData.Error(e.Message); 
             }
-            catch (ArgumentOutOfRangeException e)
+
+            OutputData.Separator();
+
+            try
+            {
+                int staminaMode = FindStaminaMode(empty);
+            }
+            catch (ArgumentException e)
             {
                 OutputData.Error(e.Message);
             }
+
+            OutputData.Message($"Создано коллекций покемонов: {PokemonArray.CollectionCount}\n");
+            OutputData.Message($"Создано покемонов: {Pokemon.Count}\n");
         }
 
         /// <summary>
@@ -123,10 +133,13 @@ namespace Task
         /// </summary>
         /// <param name="collection">Массив покемонов для поиска моды</param>
         /// <returns></returns>
-        static int FindStaminaMode(PokemonArray collection)
+        public static int FindStaminaMode(PokemonArray collection)
         {
-            ArgumentNullException.ThrowIfNull(collection, "Невозможно искать моду в null");
+            ArgumentNullException.ThrowIfNull(collection, "Невозможно искать моду в null!");
 
+            if (collection.Length == 0)
+                throw new ArgumentException("Невозможно искать моду в пустом массиве!");
+            
             MergeSort(collection, 0, collection.Length - 1);
 
             int mode = -1;
