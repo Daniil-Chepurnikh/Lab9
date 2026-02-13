@@ -5,7 +5,7 @@ namespace Task
     /// <summary>
     /// Демонстрационная программа
     /// </summary>
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
