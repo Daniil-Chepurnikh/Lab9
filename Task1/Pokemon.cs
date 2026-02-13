@@ -76,7 +76,7 @@
         /// </summary>
         public Pokemon()
         {
-            Attack  = MIN_ATK;
+            Attack = MIN_ATK;
             Defense = MIN_DEF;
             Stamina = MIN_STAM;
 
@@ -297,11 +297,10 @@
         {
             ArgumentNullException.ThrowIfNull(obj, "Невозможно сравнить значение по null");
 
-            if (obj is Pokemon pokemon)
-                return pokemon.Attack == Attack
+            return     obj is Pokemon pokemon 
+                    && pokemon.Attack == Attack
                     && pokemon.Defense == Defense 
                     && pokemon.Stamina == Stamina;
-            return false;
         }
     }
 }
