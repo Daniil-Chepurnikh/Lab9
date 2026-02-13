@@ -87,5 +87,4 @@ public class TestFindStaminaMode
 
         Assert.AreEqual(120, mode);
     }
-
 }
