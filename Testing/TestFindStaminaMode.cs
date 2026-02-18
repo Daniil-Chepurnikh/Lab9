@@ -25,10 +25,6 @@ public class TestFindStaminaMode
     [TestMethod]
     public void TestModeNull()
     {
-        PokemonArray pokemons = new(1);
-
-        pokemons[0].Stamina = 111;
-
         bool isPassed = false;
         try
         {
