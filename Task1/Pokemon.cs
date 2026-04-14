@@ -31,10 +31,10 @@
             set
             {
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, MIN_ATK, "По условию атака");
-                
+
                 ArgumentOutOfRangeException.ThrowIfGreaterThan(value, MAX_ATK, "По условию атака");
 
-                attack = value;   
+                attack = value;
             }
         }
 
@@ -105,7 +105,7 @@
         public Pokemon(Pokemon source)
         {
             ArgumentNullException.ThrowIfNull(source, "Невозможно скопировать по null");
-            
+
             Attack = source.attack;
             Defense = source.defense;
             Stamina = source.stamina;
@@ -117,17 +117,27 @@
         /// Конструктором с инициализатором
         /// </summary>
         /// <param name="atk">Атака покемона</param>
-        public Pokemon(int atk) :this()
+        public Pokemon(int atk) : this()
         {
             Attack = atk;
+        }
+
+        /// <summary>
+        /// Рандомный конструктор
+        /// </summary>
+        /// <param name="rnd">Просто метка рандома</param>
+        public Pokemon(Random rnd)
+        {
+            RandomInit();
+
+            Count++;
         }
         #endregion
 
         /// <summary>
         /// Печатает все характеристики покемона
         /// </summary>
-        /// <param name="p">Конкретный покемон</param>
-        public string Show() => $"Атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}\n";
+        override public string ToString() => $"Вид: {this.GetType().Name}, атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}";
 
         #region Увеличение параметров
         /// <summary>
@@ -202,7 +212,7 @@
             pokemon.DecrementStamina();
             return pokemon;
         }
-        
+
         /// <summary>
         /// Уменьшает выноливость на 1
         /// </summary>
@@ -212,7 +222,7 @@
         /// Считает сумму характеристик покемона 
         /// </summary>
         /// <param name="p">Покемон</param>
-        public static explicit operator int (Pokemon p) => p.Sum(); // explicit - явное привидение
+        public static explicit operator int(Pokemon p) => p.Sum(); // explicit - явное привидение
 
         /// <summary>
         /// Считает сумму характеристик покемона 
@@ -278,7 +288,7 @@
             pokemon.IncreaseDefense(increaseDefense);
             return pokemon;
         }
-        
+
         /// <summary>
         /// Увеличивает защиту покемона на заданное число
         /// </summary>
@@ -293,14 +303,32 @@
         /// </summary>
         /// <param name="obj">Сравниваемый объект</param>
         /// <returns>true если объекты равны</returns>
-        public override bool Equals(object? obj)
+        override public bool Equals(object? obj)
         {
             ArgumentNullException.ThrowIfNull(obj, "Невозможно сравнить значение по null");
 
-            return     obj is Pokemon pokemon 
+            return obj is Pokemon pokemon
                     && pokemon.Attack == Attack
-                    && pokemon.Defense == Defense 
+                    && pokemon.Defense == Defense
                     && pokemon.Stamina == Stamina;
         }
+
+        /// <summary>
+        /// Рандомная инициализация
+        /// </summary>
+        public void RandomInit()
+        {
+            Random random = new Random();
+            
+            Attack = random.Next(100, 200);
+            Defense = random.Next(100, 200);
+            Stamina = random.Next(100, 200);
+        }
+
+       /// <summary>
+       /// Возвращает хеш-код покеммона
+       /// </summary>
+       /// <returns>Значение хеш-кода</returns>
+       public override int GetHashCode() => HashCode.Combine(Attack, Defense, Stamina);
     }
 }
