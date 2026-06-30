@@ -95,7 +95,7 @@ public class TestPokemonArray
         bool isPassed = false;
         try
         {
-           OutputData.Message(pokemons[4].Show());
+           OutputData.Message(pokemons[4].ToString());
         }
         catch (IndexOutOfRangeException)
         {
@@ -112,7 +112,7 @@ public class TestPokemonArray
         bool isPassed = false;
         try
         {
-            OutputData.Message(pokemons[-1].Show());
+            OutputData.Message(pokemons[-1].ToString());
         }
         catch (IndexOutOfRangeException)
         {
@@ -165,7 +165,7 @@ public class TestPokemonArray
         bool isPassed = true;
         try
         {
-            OutputData.Message(pokemons[3].Show());
+            OutputData.Message(pokemons[3].ToString());
         }
         catch (IndexOutOfRangeException)
         {
@@ -182,7 +182,7 @@ public class TestPokemonArray
         bool isPassed = true;
         try
         {
-            OutputData.Message(pokemons[0].Show());
+            OutputData.Message(pokemons[0].ToString());
         }
         catch (IndexOutOfRangeException)
         {
@@ -199,7 +199,7 @@ public class TestPokemonArray
         bool isPassed = true;
         try
         {
-            OutputData.Message(pokemons[2].Show());
+            OutputData.Message(pokemons[2].ToString());
         }
         catch (IndexOutOfRangeException)
         {

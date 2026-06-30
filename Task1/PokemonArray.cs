@@ -87,13 +87,13 @@
         /// <summary>
         /// Передаёт информацию о покемонах в массиве
         /// </summary>
-        public string[] Show()
+        public string[] ToString()
         {
             string[] messages = new string[pokemons.Length];
 
             for (int p = 0; p < Length; p++)
             {
-                messages[p] = pokemons[p].Show();
+                messages[p] = pokemons[p].ToString();
             }
             return messages;
         }

@@ -12,27 +12,27 @@ namespace Task
             Pokemon vanya = new(111, 111, 111);
             
             vanya = --vanya;
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Message($"{nameof(vanya)} {vanya}");
             OutputData.Separator();
             
             vanya >>= 11;
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Message($"{nameof(vanya)} {vanya}");
             OutputData.Separator();
 
             vanya = vanya > 190;
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Message($"{nameof(vanya)} {vanya}");
             OutputData.Separator();
             
             vanya = -90 > vanya;
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Message($"{nameof(vanya)} {vanya}");
             OutputData.Separator();
 
             vanya = vanya < 190;
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Message($"{nameof(vanya)} {vanya}");
             OutputData.Separator();
 
             vanya = -90 < vanya;
-            OutputData.Message($"{nameof(vanya)} {vanya.Show()}");
+            OutputData.Message($"{nameof(vanya)} {vanya}");
             OutputData.Separator();
 
             double average = vanya;
@@ -42,11 +42,11 @@ namespace Task
             OutputData.Separator();
 
             Pokemon petya = new(vanya);
-            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya}", $"{nameof(vanya)} {vanya}", $"Они равны: {petya.Equals(vanya)}");
             OutputData.Separator();
 
             petya--;
-            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya.Show()}", $"{nameof(vanya)} {vanya.Show()}", $"Они равны: {petya.Equals(vanya)}");
+            OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)} {petya}", $"{nameof(vanya)} {vanya}", $"Они равны: {petya.Equals(vanya)}");
             OutputData.Separator();
 
             OutputData.Message(ConsoleColor.Magenta, $"{nameof(petya)}, {nameof(average)}", $"Они равны: {petya.Equals(average)}");
@@ -62,7 +62,7 @@ namespace Task
             }
             
             PokemonArray pokemons = new(11);
-            OutputData.Message(ConsoleColor.White, pokemons.Show());
+            OutputData.Message(ConsoleColor.White, pokemons.ToString());
             
             var mode = FindStaminaMode(pokemons);
             OutputData.Message($"{mode}\n");
@@ -79,7 +79,7 @@ namespace Task
 
             try
             {
-                OutputData.Message(empty[0].Show());
+                OutputData.Message(empty[0].ToString());
             }
             catch (IndexOutOfRangeException e)
             {
@@ -87,26 +87,26 @@ namespace Task
             }
 
             PokemonArray copyPokemons = new(pokemons);
-            OutputData.Message(ConsoleColor.Yellow, copyPokemons.Show());
+            OutputData.Message(ConsoleColor.Yellow, copyPokemons.ToString());
 
             copyPokemons[10] = new(200, 222, 111);
 
-            OutputData.Message(ConsoleColor.Magenta,  copyPokemons.Show());
+            OutputData.Message(ConsoleColor.Magenta,  copyPokemons.ToString());
             OutputData.Separator();
 
-            OutputData.Message(ConsoleColor.Green, pokemons.Show());
+            OutputData.Message(ConsoleColor.Green, pokemons.ToString());
             OutputData.Separator();
 
-            OutputData.Message(pokemons[0].Show());
+            OutputData.Message(pokemons[0].ToString());
             OutputData.Separator();
 
             PokemonArray packmans = new(5);
-            OutputData.Message(ConsoleColor.Blue, packmans.Show());
+            OutputData.Message(ConsoleColor.Blue, packmans.ToString());
 
             try
             {
                 PokemonArray array = MakePokemonArray(null);
-                OutputData.Message(ConsoleColor.Blue, array.Show());
+                OutputData.Message(ConsoleColor.Blue, array.ToString());
             }
             catch (ArgumentNullException e)
             {
