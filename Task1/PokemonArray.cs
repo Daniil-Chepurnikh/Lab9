@@ -5,7 +5,7 @@
     /// </summary>
     public class PokemonArray
     {
-        Pokemon[] pokemons;
+        private readonly Pokemon[] pokemons;
 
         /// <summary>
         /// Количество созданных коллекций покемонов
@@ -16,18 +16,25 @@
 
         public Pokemon this[int index]
         {
-            get 
-            {  
+            get
+            {
                 if (IsInRange(index, 0, Length - 1))
+                {
                     return pokemons[index];
+                }
+
                 throw new IndexOutOfRangeException("Чтение по несуществующему индексу");
             }
             set
             {
                 if (IsInRange(index, 0, Length - 1))
+                {
                     pokemons[index] = value;
+                }
                 else
+                {
                     throw new IndexOutOfRangeException("Запись по несуществующему индексу");
+                }
             }
         }
 
@@ -38,12 +45,12 @@
         /// <param name="min">Левая граница диапазона(включительно)</param>
         /// <param name="max">Правая граница диапазона(НЕ включительно)</param>
         /// <returns>true если в диапазоне иначе false</returns>
-        static bool IsInRange(int index, int min, int max) => index >= min && index <= max;
+        private static bool IsInRange(int index, int min, int max) => index >= min && index <= max;
 
         /// <summary>
         /// Датчик случайных чисел
         /// </summary>
-        static readonly Random random = new();
+        private static readonly Random random = new();
 
         /// <summary>
         /// Инициализация по умолчанию
@@ -65,7 +72,7 @@
             {
                 pokemons[p] = new(random.Next(111, 150), random.Next(111, 150), random.Next(111, 150));
             }
-            
+
             CollectionCount++;
         }
 
@@ -87,7 +94,7 @@
         /// <summary>
         /// Передаёт информацию о покемонах в массиве
         /// </summary>
-        public string[] ToString()
+        public new string[] ToString()
         {
             string[] messages = new string[pokemons.Length];
 
