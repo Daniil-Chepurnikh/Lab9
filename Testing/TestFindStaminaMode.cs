@@ -1,11 +1,11 @@
 using Task;
+using Xunit;
 
 namespace Testing;
 
-[TestClass]
 public class TestFindStaminaMode
 {
-    [TestMethod]
+    [Fact]
     public void TestModeEmpty()
     {
         PokemonArray pokemons = new();
@@ -19,10 +19,10 @@ public class TestFindStaminaMode
             isPassed = true;
         }
 
-        Assert.IsTrue(isPassed);
+        Assert.True(isPassed);
     }
 
-    [TestMethod]
+    [Fact]
     public void TestModeNull()
     {
         bool isPassed = false;
@@ -35,10 +35,10 @@ public class TestFindStaminaMode
             isPassed = true;
         }
 
-        Assert.IsTrue(isPassed);
+        Assert.True(isPassed);
     }
 
-    [TestMethod]
+    [Fact]
     public void TestModeOneElement()
     {
 
@@ -47,10 +47,10 @@ public class TestFindStaminaMode
 
         int mode = Program.FindStaminaMode(pokemons);
 
-        Assert.AreEqual(111, mode);
+        Assert.Equal(111, mode);
     }
 
-    [TestMethod]
+    [Fact]
     public void TestModeManyElements()
     {
         PokemonArray pokemons = new(7);
@@ -64,10 +64,10 @@ public class TestFindStaminaMode
 
         int mode = Program.FindStaminaMode(pokemons);
 
-        Assert.AreEqual(120, mode);
+        Assert.Equal(120, mode);
     }
 
-    [TestMethod]
+    [Fact]
     public void TestModeManySortElements()
     {
         PokemonArray pokemons = new(7);
@@ -81,6 +81,6 @@ public class TestFindStaminaMode
 
         int mode = Program.FindStaminaMode(pokemons);
 
-        Assert.AreEqual(120, mode);
+        Assert.Equal(120, mode);
     }
 }

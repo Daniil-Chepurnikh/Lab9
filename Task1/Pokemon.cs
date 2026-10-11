@@ -18,9 +18,9 @@
 
         public static int Count { get; private set; }
 
-        int attack;
-        int defense;
-        int stamina;
+        private int attack;
+        private int defense;
+        private int stamina;
 
         /// <summary>
         /// Aтака 
@@ -86,8 +86,8 @@
         /// <summary>
         /// Инициализация желаемыми значениями
         /// </summary>
-        /// <param name="atk">Атака</param>
-        /// <param name="def">Защита</param>
+        /// <param name="attack">Атака</param>
+        /// <param name="attack">Защита</param>
         /// <param name="stam">Выносливость</param>
         public Pokemon(int attack, int defense, int stamina)
         {
@@ -116,10 +116,10 @@
         /// <summary>
         /// Конструктором с инициализатором
         /// </summary>
-        /// <param name="atk">Атака покемона</param>
-        public Pokemon(int atk) : this()
+        /// <param name="attack">Атака покемона</param>
+        public Pokemon(int attack) : this()
         {
-            Attack = atk;
+            Attack = attack;
         }
 
         /// <summary>
@@ -137,7 +137,7 @@
         /// <summary>
         /// Печатает все характеристики покемона
         /// </summary>
-        override public string ToString() => $"Вид: {this.GetType().Name}, атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}";
+        public override string ToString() => $"Вид: {this.GetType().Name}, атака: {Attack,3}, защита: {Defense,3}, выносливость: {Stamina,3}";
 
         #region Увеличение параметров
         /// <summary>
@@ -172,19 +172,19 @@
         /// Увеличивает атаку покемона
         /// </summary>
         /// <param name="increaseAttack">Увеличение</param>
-        void IncreaseAttack(int increaseAttack) => Attack += increaseAttack;
+        private void IncreaseAttack(int increaseAttack) => Attack += increaseAttack;
 
         /// <summary>
         /// Увеличивает зашиту покемона
         /// </summary>
         /// <param name="increaseDefense">Увеличение</param>
-        void IncreaseDefense(int increaseDefense) => Defense += increaseDefense;
+        private void IncreaseDefense(int increaseDefense) => Defense += increaseDefense;
 
         /// <summary>
         /// Увеличивает выносливость покемона, если возможно
         /// </summary>
         /// <param name="increaseStamina">Увеличение</param>
-        void IncreaseStamina(int increaseStamina) => Stamina += increaseStamina;
+        private void IncreaseStamina(int increaseStamina) => Stamina += increaseStamina;
         #endregion
 
         #region Переопределённые операции
@@ -199,7 +199,7 @@
         /// Считает мощность покемона
         /// </summary>
         /// <returns>Число с округлением до сотых</returns>
-        double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
+        private double CalculatePower() => Math.Round(Math.Sqrt(Defense) * Math.Sqrt(Stamina) / 10 * Attack, 2);
 
         /// <summary>
         /// Уменьшает выносливость покемона на 1
@@ -216,7 +216,7 @@
         /// <summary>
         /// Уменьшает выноливость на 1
         /// </summary>
-        void DecrementStamina() => Stamina--;
+        private void DecrementStamina() => Stamina--;
 
         /// <summary>
         /// Считает сумму характеристик покемона 
@@ -228,7 +228,7 @@
         /// Считает сумму характеристик покемона 
         /// </summary>
         /// <returns>Сумма характеристик</returns>
-        int Sum() => Attack + Defense + Stamina;
+        private int Sum() => Attack + Defense + Stamina;
 
         /// <summary>
         /// Считает среднее характеристик покемона 
@@ -240,7 +240,7 @@
         /// Считает среднее характеристик покемона 
         /// </summary>
         /// <returns></returns>
-        double Average() => Math.Round(Sum() / 3.0, 2);
+        private double Average() => Math.Round(Sum() / 3.0, 2);
 
         /// <summary>
         /// Увеличивает выносливость покемона на определённое число
@@ -303,7 +303,7 @@
         /// </summary>
         /// <param name="obj">Сравниваемый объект</param>
         /// <returns>true если объекты равны</returns>
-        override public bool Equals(object? obj)
+        public override bool Equals(object? obj)
         {
             ArgumentNullException.ThrowIfNull(obj, "Невозможно сравнить значение по null");
 
@@ -319,16 +319,16 @@
         public void RandomInit()
         {
             Random random = new Random();
-            
+
             Attack = random.Next(100, 200);
             Defense = random.Next(100, 200);
             Stamina = random.Next(100, 200);
         }
 
-       /// <summary>
-       /// Возвращает хеш-код покеммона
-       /// </summary>
-       /// <returns>Значение хеш-кода</returns>
-       public override int GetHashCode() => HashCode.Combine(Attack, Defense, Stamina);
+        /// <summary>
+        /// Возвращает хеш-код покеммона
+        /// </summary>
+        /// <returns>Значение хеш-кода</returns>
+        public override int GetHashCode() => HashCode.Combine(Attack, Defense, Stamina);
     }
 }
